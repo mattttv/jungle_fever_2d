@@ -10,6 +10,7 @@ var plants;
 var cursors;
 
 var game;
+var level;
 
 var world;
 var playermodel;
@@ -30,6 +31,8 @@ window.onload = function() {
 
 	
 	function preload() {
+		level = new Level();
+		level.create();
         game.load.image('drvoodo', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('dude', 'dude.png', 32, 48);
@@ -39,6 +42,7 @@ window.onload = function() {
 
 
     function create () {
+    	level.create();
         setup_player(game, player);
         music = game.add.audio('village',1,true);
 
