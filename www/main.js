@@ -31,8 +31,12 @@ window.onload = function() {
 	
 	function preload() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         game.load.image('drvoodo', 'resources/pineapple.png');
+=======
+        game.load.image('people', 'resources/pineapple.png');
+>>>>>>> FETCH_HEAD
 =======
         game.load.image('people', 'resources/pineapple.png');
 >>>>>>> FETCH_HEAD
