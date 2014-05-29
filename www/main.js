@@ -13,25 +13,29 @@ var game;
 
 var world;
 var playermodel;
+
 /*
  * Main
  */
 window.onload = function() {
 
-	world = new CurrentArea();
-	
 	game = new Phaser.Game(
 			800,600,
 			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
 			'Jungle Fever 2.0 - Dr. Voodo returns', 
 			{ preload: preload, create: create, update: update, render: render });
-
+	
+	world = new CurrentArea(game);
+	playermodel = new PlayerModel();
 	
 	function preload() {
 <<<<<<< HEAD
 
         game.load.image('drvoodo', 'resources/pineapple.png');
+=======
+        game.load.image('people', 'resources/pineapple.png');
+>>>>>>> FETCH_HEAD
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('girl', 'resources/0000_asdzug.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
@@ -41,6 +45,7 @@ window.onload = function() {
 
 
     function create () {
+
         setup_player(game, player);
         music = game.add.audio('village',1,true);
 
