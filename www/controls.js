@@ -50,18 +50,10 @@ function doGameController(game, cursors) {
         }
     }
 }
-
-
-function gofull(){
-        	Phaser.StageScaleMode.EXACT_FIT = 0;
-        	game.stage.scale.startFullScreen();
-        	alert('full screen');
-}
         
-
-
-
-
+function doAttack(player) {
+    console.log("attack");
+}
 
 /****
 Game Updates

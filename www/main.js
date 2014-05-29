@@ -13,6 +13,7 @@ var game;
 
 var world;
 var playermodel;
+
 /*
  * Main
  */
@@ -60,6 +61,9 @@ window.onload = function() {
 	    player.body.bounce.set(1);
 
 	    cursors = game.input.keyboard.createCursorKeys();
+
+        attackKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
+        attackKey.onDown.add(doAttack, this);
 
         setupFullScreen();
         
