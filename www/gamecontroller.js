@@ -24,3 +24,13 @@ function doGameController() {
                 player.animations.play('right');
             }
 }
+
+
+
+function gofull(){
+        	Phaser.StageScaleMode.EXACT_FIT = 0;
+        	game.stage.scale.startFullScreen();
+        	alert('full screen');
+        }
+        
+
