@@ -1,31 +1,37 @@
 
 function doGameController(game, cursors) {
-	
+	var movement_happend = false;
     if (cursors.left.isDown)
     {
         player.body.velocity.x -= 6;
         player.animations.play('left');
         player.last = 0;
+        movement_happend = true;
     }
     else if (cursors.right.isDown)
     {
         player.body.velocity.x += 6;
         player.animations.play('right');
         player.last = 1;
+        movement_happend = true;
     }
-    else if (cursors.up.isDown)
+    
+    if (cursors.up.isDown)
     {
         player.body.velocity.y -= 6;
         player.animations.play('up');
         player.last = 2;
+        movement_happend = true;
     }
     else if (cursors.down.isDown)
     {
         player.body.velocity.y += 6;
         player.animations.play('down');
         player.last = 3;
-    } else {
-        
+        movement_happend = true;
+    } 
+    
+    if (!movement_happend) {
     	switch(player.last) {
         case 0:
             player.animations.play('idleleft');
