@@ -15,3 +15,15 @@ function setUpDemoPlants(game) {
     }
     
 }
+
+function setupFullScreen() {
+    // Maintain aspect ratio
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    game.input.onDown.add(gofull, this);
+
+}
+
+function gofull() {
+    game.scale.startFullScreen();
+}

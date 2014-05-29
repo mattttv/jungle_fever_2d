@@ -9,14 +9,16 @@ var upKey, downKey, leftKey, rightKey;
 var plants;
 var cursors;
 
+var game;
+
 
 /*
  * Main
  */
 window.onload = function() {
 
-	var game = new Phaser.Game(
-			400,300,
+	game = new Phaser.Game(
+			800,600,
 			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
 			'Jungle Fever 2.0 - Dr. Voodo returns', 
@@ -32,6 +34,7 @@ window.onload = function() {
 
     function create () {
         setup_player(game, player);
+        game.stage.backgroundColor = '#050';
 
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -43,6 +46,8 @@ window.onload = function() {
 	    player.body.bounce.set(1);
 
 	    cursors = game.input.keyboard.createCursorKeys();
+
+        setupFullScreen();
 
 	}
 
@@ -76,5 +81,5 @@ window.onload = function() {
     
 }    
  
-    };
+};
 
