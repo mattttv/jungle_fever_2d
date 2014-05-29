@@ -1,6 +1,4 @@
-var sprite;
 var player;
-var sp2;
 var people;
 var cursors;
 var upKey, downKey, leftKey, rightKey;
@@ -28,7 +26,7 @@ window.onload = function() {
 
 
     function create () {
-        setup_player();
+        setup_player(game, player);
 
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -60,12 +58,7 @@ window.onload = function() {
 // 	    game.debug.quadTree(game.physics.arcade.quadTree);
 
 	}
-
-
-
-
-function setup_player(){
-
+	function setup_player(){
         player   = game.add.sprite(32, 0.5, 'dude');
 
         //  Our two animations, walking left and right.
@@ -75,5 +68,6 @@ function setup_player(){
         player.animations.add('down', [4], 10, true);    
     
 }    
+ 
     };
 

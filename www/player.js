@@ -1,6 +1,4 @@
-function setup_player(){
-    
-
+function setup_player() {
         player   = game.add.sprite(32, 0.5, 'dude');
 
         //  Our two animations, walking left and right.
