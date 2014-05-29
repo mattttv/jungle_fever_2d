@@ -11,8 +11,7 @@ function doGameController(game, cursors) {
         player.body.velocity.x += 6;
         player.animations.play('right');
     }
-
-    if (cursors.up.isDown)
+    else if (cursors.up.isDown)
     {
         player.body.velocity.y -= 6;
         player.animations.play('left');
@@ -21,6 +20,8 @@ function doGameController(game, cursors) {
     {
         player.body.velocity.y += 6;
         player.animations.play('right');
+    } else {
+    	player.animations.play('idle');
     }
     // console.log("down");
     
@@ -53,5 +54,4 @@ function doUpdates(game) {
     // TODO: can this be solved via physics / friction ? 
     player.body.velocity.x = Math.abs(player.body.velocity.x) > 1 ? player.body.velocity.x*0.95 : 0;
     player.body.velocity.y = Math.abs(player.body.velocity.y) > 1 ? player.body.velocity.y*0.95 : 0;
-    
 }

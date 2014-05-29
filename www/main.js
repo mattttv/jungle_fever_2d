@@ -39,6 +39,7 @@ window.onload = function() {
         music = game.add.audio('village',1,true);
 
         music.play('',0,1,true);
+        
         game.stage.backgroundColor = '#050';
             
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -82,7 +83,8 @@ window.onload = function() {
         player.animations.add('left', [0, 1, 2, 3], 10, true);
         player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-        player.animations.add('down', [4], 10, true);    
+        player.animations.add('down', [4], 10, true);
+        player.animations.add('idle', [4], 10, true);
     
 }    
  
