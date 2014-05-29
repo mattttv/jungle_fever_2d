@@ -52,7 +52,7 @@ function doGameController(game, cursors) {
 }
         
 function doAttack(player) {
-    console.log("attack");
+    debugPrint("attack");
 }
 
 /****
