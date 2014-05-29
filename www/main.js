@@ -14,6 +14,8 @@ var game;
 var world;
 var playermodel;
 
+var emitter;
+
 /*
  * Main
  */
@@ -30,16 +32,7 @@ window.onload = function() {
 	playermodel = new PlayerModel();
 	
 	function preload() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        game.load.image('drvoodo', 'resources/pineapple.png');
-=======
         game.load.image('people', 'resources/pineapple.png');
->>>>>>> FETCH_HEAD
-=======
-        game.load.image('people', 'resources/pineapple.png');
->>>>>>> FETCH_HEAD
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('girl', 'resources/0000_asdzug.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
@@ -53,7 +46,7 @@ window.onload = function() {
         setup_player(game, player);
         music = game.add.audio('village',1,true);
 
-        music.play('',0,1,true);
+        // music.play('',0,1,true);
         
         game.stage.backgroundColor = '#462';
             
@@ -65,15 +58,20 @@ window.onload = function() {
 	    // enable physics for collision etc.
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
 	    game.physics.enable(player, Phaser.Physics.ARCADE);
-
 	    player.body.collideWorldBounds = true;
 	    player.body.bounce.set(1);
+	    // reduce player body size - collision happens not as far away ? 
+	    player.body.offset.x=20;
+	    player.body.offset.y=30;
+	    player.body.height-=35;
+	    player.body.width-=20;
+        
 
 	    cursors = game.input.keyboard.createCursorKeys();
 
         setupFullScreen();
         
-        var emitter = game.add.emitter(game.world.centerX, 0, 400);
+        emitter = game.add.emitter(game.world.centerX, 0, 400);
 
         emitter.width = game.world.width;
         // emitter.angle = 30; // uncomment to set an angle for the rain.
@@ -89,7 +87,7 @@ window.onload = function() {
         emitter.minRotation = 0;
         emitter.maxRotation = 0;
 
-	emitter.start(false, 1600, 5, 0);
+        emitter.start(false, 1600, 5, 0);
 
 	}
 
@@ -120,7 +118,9 @@ window.onload = function() {
         player.animations.add('idleup', [0], 10, true);
         player.animations.add('idleright', [1], 10, true);
         player.animations.add('idledown', [2], 10, true);
-        player.animations.add('idleleft', [3], 10, true);        
+        player.animations.add('idleleft', [3], 10, true);   
+        
+        
     
 }    
  
