@@ -64,7 +64,7 @@ window.onload = function() {
 	    player.body.offset.x=20;
 	    player.body.offset.y=30;
 	    player.body.height-=35;
-	    player.body.width-=20;
+	    player.body.width-=35;
         
 
 	    cursors = game.input.keyboard.createCursorKeys();
