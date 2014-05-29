@@ -68,6 +68,7 @@ Game Updates
 *****/
 function doUpdates(game) {
 
+	world.doUpdates(game);
     
 	// Test for overlaps between the player and the group of plants
     // in world object.
@@ -77,6 +78,13 @@ function doUpdates(game) {
     	// TODO : put into player's inventory
 		
 	});
+    
+//    game.physics.arcade.collide(player, world.sprites['people'], function(o1,o2) {
+//		//console.log(o2.plant_tag);
+//    	//o2.destroy();
+//    	// TODO : put into player's inventory
+//		
+//	});
     
     
     // Slow down the player
