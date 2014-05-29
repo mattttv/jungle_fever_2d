@@ -48,12 +48,15 @@ window.onload = function() {
 
 	function update() {
 
-	    // game.physics.arcade.collide(drvoodo, plants);
-
 		
 	    doGameController(game, cursors);
 	    
 
+	    doUpdates(game);
+	    
+//	    game.physics.arcade.ovelap(player, plants, function() {
+//			consolo.log("Collide !")
+//		});
 
 	}
 

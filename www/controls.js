@@ -33,3 +33,24 @@ function gofull(){
         	alert('full screen');
 }
         
+
+
+
+
+
+/****
+Game Updates
+*****/
+function doUpdates(game) {
+
+	// Test for overlaps between the player and the group of plants
+    game.physics.arcade.overlap(player, plants, function(o1,o2) {
+		o2.destroy();
+	});
+    
+    
+//    // Slow down the player
+//    player.velocity*=0.5;
+//    if (player.velocity < 0.5) 
+//    	plyer.velocity = 0;
+}
