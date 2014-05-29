@@ -5,23 +5,43 @@ function doGameController(game, cursors) {
     {
         player.body.velocity.x -= 6;
         player.animations.play('left');
+        player.last = 0;
     }
     else if (cursors.right.isDown)
     {
         player.body.velocity.x += 6;
         player.animations.play('right');
+        player.last = 1;
     }
     else if (cursors.up.isDown)
     {
         player.body.velocity.y -= 6;
-        player.animations.play('left');
+        player.animations.play('up');
+        player.last = 2;
     }
     else if (cursors.down.isDown)
     {
         player.body.velocity.y += 6;
-        player.animations.play('right');
+        player.animations.play('down');
+        player.last = 3;
     } else {
-    	player.animations.play('idle');
+        
+    	switch(player.last) {
+        case 0:
+            player.animations.play('idleleft');
+            break;
+        case 1:
+            player.animations.play('idleright');
+            break;
+        case 2:
+            player.animations.play('idleup');
+            break;
+        case 3:
+            player.animations.play('idledown');
+            break;                
+        default:
+            player.animations.play('idledown');
+        }
     }
 }
 
