@@ -3,23 +3,23 @@ function doGameController(game, cursors) {
 	
     if (cursors.left.isDown)
     {
-        player.body.velocity.x -= 4;
+        player.body.velocity.x -= 6;
         player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
-        player.body.velocity.x += 4;
+        player.body.velocity.x += 6;
         player.animations.play('right');
     }
 
     if (cursors.up.isDown)
     {
-        player.body.velocity.y -= 4;
+        player.body.velocity.y -= 6;
         player.animations.play('left');
     }
     else if (cursors.down.isDown)
     {
-        player.body.velocity.y += 4;
+        player.body.velocity.y += 6;
         player.animations.play('right');
     }
     // console.log("down");
@@ -49,8 +49,9 @@ function doUpdates(game) {
 	});
     
     
-//    // Slow down the player
-//    player.velocity*=0.5;
-//    if (player.velocity < 0.5) 
-//    	plyer.velocity = 0;
+    // Slow down the player
+    // TODO: can this be solved via physics / friction ? 
+    player.body.velocity.x = Math.abs(player.body.velocity.x) > 1 ? player.body.velocity.x*0.95 : 0;
+    player.body.velocity.y = Math.abs(player.body.velocity.y) > 1 ? player.body.velocity.y*0.95 : 0;
+    
 }
