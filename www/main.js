@@ -29,13 +29,18 @@ window.onload = function() {
         game.load.image('drvoodo', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('dude', 'dude.png', 32, 48);
+        game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
+
 	}
 
 
     function create () {
         setup_player(game, player);
-        game.stage.backgroundColor = '#050';
+        music = game.add.audio('village',1,true);
 
+        music.play('',0,1,true);
+        game.stage.backgroundColor = '#050';
+            
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	    setUpDemoPlants(game);
