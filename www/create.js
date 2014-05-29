@@ -33,6 +33,12 @@ function spawnArea(game, world) {
         p.sprite = s;
         world.people.push(p);
 	}
+	
+	// Make one big group of sprites, so we can do (depth) sorting
+	world.sprites['all'] = new Phaser.Group(game);
+	world.sprites['all'].add(world.sprites['plants']);
+	world.sprites['all'].add(world.sprites['people']);
+	world.sprites['all'].add(player);
 }
 
 function setupFullScreen() {
@@ -46,3 +52,4 @@ function setupFullScreen() {
 function gofull() {
     game.scale.startFullScreen();
 }
+
