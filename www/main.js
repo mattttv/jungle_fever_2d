@@ -1,20 +1,25 @@
+/*
+ * Big Bunch of Globals:
+ */
 var player;
 var people;
 var cursors;
 var upKey, downKey, leftKey, rightKey;
 
-var drvoodo;
 var plants;
 var cursors;
 
 
+/*
+ * Main
+ */
 window.onload = function() {
 
 	var game = new Phaser.Game(
 			400,300,
 			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
-			'drvoodo', 
+			'Jungle Fever 2.0 - Dr. Voodo returns', 
 			{ preload: preload, create: create, update: update, render: render });
 
 	
@@ -32,8 +37,6 @@ window.onload = function() {
 
 	    setUpDemoPlants(game);
 
-	    drvoodo = game.add.sprite(game.world.randomX, game.world.randomY, 'drvoodo');
-
 	    game.physics.enable(player, Phaser.Physics.ARCADE);
 
 	    player.body.collideWorldBounds = true;
@@ -45,8 +48,9 @@ window.onload = function() {
 
 	function update() {
 
-	    game.physics.arcade.collide(drvoodo, plants);
+	    // game.physics.arcade.collide(drvoodo, plants);
 
+		
 	    doGameController(game, cursors);
 	    
 
