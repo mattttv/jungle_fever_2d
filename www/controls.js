@@ -18,6 +18,7 @@ function doGameController(game, cursors) {
     {
         drvoodo.body.velocity.y += 4;
     }
+}
 
 
 function gofull(){
