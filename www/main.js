@@ -11,12 +11,16 @@ var cursors;
 
 var game;
 
-
+var world;
+var playermodel;
 /*
  * Main
  */
 window.onload = function() {
 
+	world = new CurrentArea();
+	playermodel = new PlayerModel();
+	
 	game = new Phaser.Game(
 			800,600,
 			// window.innerWidth, window.innerHeight,
@@ -40,12 +44,15 @@ window.onload = function() {
 
         music.play('',0,1,true);
         
-        game.stage.backgroundColor = '#050';
+        game.stage.backgroundColor = '#462';
             
+
+	    // setUpDemoPlants(game);
+	    spawnArea(game, world);
+	    
+
+	    // enable physics for collision etc.
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
-
-	    setUpDemoPlants(game);
-
 	    game.physics.enable(player, Phaser.Physics.ARCADE);
 
 	    player.body.collideWorldBounds = true;
@@ -65,10 +72,6 @@ window.onload = function() {
 
 	    doUpdates(game);
 	    
-//	    game.physics.arcade.ovelap(player, plants, function() {
-//			consolo.log("Collide !")
-//		});
-
 	}
 
 	function render() {

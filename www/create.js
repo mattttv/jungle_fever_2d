@@ -1,19 +1,24 @@
 
 
-function setUpDemoPlants(game) {
-
-	plants = game.add.group();
-    plants.enableBody = true;
-    for (var i = 0; i < 5; i++)
+/**
+ * set up a world area
+ * @param game
+ * @param world
+ */
+function spawnArea(game, world) {
+	
+	world.sprites['plants'] = game.add.group();
+	world.sprites['plants'].enableBody = true;
+	for (var i = 0; i < 15; i++)
     {
-        var s = plants.create(
+        var s = world.sprites['plants'].create(
         		game.world.randomX, game.world.randomY, 
         		'baddie');
         s.body.collideWorldBounds = true;
         s.body.bounce.set(1);
-        // s.body.velocity.setTo(10 + Math.random() * 40, 10 + Math.random() * 40);
+        
+        s.plant_tag="shroom";
     }
-    
 }
 
 function setupFullScreen() {

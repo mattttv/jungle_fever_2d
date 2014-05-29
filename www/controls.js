@@ -23,8 +23,6 @@ function doGameController(game, cursors) {
     } else {
     	player.animations.play('idle');
     }
-    // console.log("down");
-    
 }
 
 
@@ -44,9 +42,14 @@ Game Updates
 *****/
 function doUpdates(game) {
 
+    
 	// Test for overlaps between the player and the group of plants
-    game.physics.arcade.overlap(player, plants, function(o1,o2) {
-		o2.destroy();
+    // in world object.
+    game.physics.arcade.overlap(player, world.sprites['plants'], function(o1,o2) {
+		console.log(o2.plant_tag);
+    	o2.destroy();
+    	// TODO : put into player's inventory
+		
 	});
     
     
