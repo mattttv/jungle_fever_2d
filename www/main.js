@@ -3,6 +3,10 @@ var sp2;
 var people;
 var cursors;
 var upKey, downKey, leftKey, rightKey;
+var drvoodo;
+var plants;
+var cursors;
+
 window.onload = function() {
 
 	var game = new Phaser.Game(
@@ -18,9 +22,7 @@ window.onload = function() {
         game.load.image('baddie', 'resources/mushroom.png');
 	}
 
-	var drvoodo;
-	var plants;
-	var cursors;
+
 
 	function create() {
 
@@ -55,23 +57,9 @@ window.onload = function() {
 
 	    game.physics.arcade.collide(drvoodo, plants);
 
-	    if (cursors.left.isDown)
-	    {
-	        drvoodo.body.velocity.x -= 4;
-	    }
-	    else if (cursors.right.isDown)
-	    {
-	        drvoodo.body.velocity.x += 4;
-	    }
+	    doGameController(game, cursors);
+	    
 
-	    if (cursors.up.isDown)
-	    {
-	        drvoodo.body.velocity.y -= 4;
-	    }
-	    else if (cursors.down.isDown)
-	    {
-	        drvoodo.body.velocity.y += 4;
-	    }
 
 	}
 
