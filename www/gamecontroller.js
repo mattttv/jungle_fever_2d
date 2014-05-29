@@ -3,20 +3,24 @@ function doGameController() {
 
 			if (upKey.isDown)
             {
-                sprite.y--;
+                player.y--;
                 // console.log("down");
+                player.animations.play('left');
             }
             else if (downKey.isDown)
             {
-                sprite.y++;
+                player.y++;
+                player.animations.play('right');
             }
 
             if (leftKey.isDown)
             {
-                sprite.x--;
+                player.x--;
+                player.animations.play('left');
             }
             else if (rightKey.isDown)
             {
-                sprite.x++;
+                player.x++;
+                player.animations.play('right');
             }
 }
