@@ -2,62 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>hello phaser!</title>
+        <title>Jungle Fever 2D</title>
         <script src="phaser.min.js"></script>
+        <script src="main.js"></script>
+        <script src="gamecontroller.js"></script>
     </head>
     <body>
-
-    <script type="text/javascript">
-    var sprite;
-    window.onload = function() {
-
-        var game = new Phaser.Game(800, 600, Phaser.AUTO, '', 
-        		{ preload: preload, create: create, update: update  });
-
-        function preload () {
-
-            game.load.image('logo', 'phaser.png');
-
-        }
-
-        function create () {
-        	
-            sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-            sprite.anchor.setTo(0.5, 0.5);
-
-            upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-            downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-            leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-            rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-
-        }
-
-        function update() {
-
-            if (upKey.isDown)
-            {
-                sprite.y--;
-                // console.log("down");
-            }
-            else if (downKey.isDown)
-            {
-                sprite.y++;
-            }
-
-            if (leftKey.isDown)
-            {
-                sprite.x--;
-            }
-            else if (rightKey.isDown)
-            {
-                sprite.x++;
-            }
-
-        }
-
-    };
-
-    </script>
 
     </body>
 </html>
