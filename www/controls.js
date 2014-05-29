@@ -3,21 +3,27 @@ function doGameController(game, cursors) {
 	
     if (cursors.left.isDown)
     {
-        drvoodo.body.velocity.x -= 4;
+        player.body.velocity.x -= 4;
+        player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
-        drvoodo.body.velocity.x += 4;
+        player.body.velocity.x += 4;
+        player.animations.play('right');
     }
 
     if (cursors.up.isDown)
     {
-        drvoodo.body.velocity.y -= 4;
+        player.body.velocity.y -= 4;
+        player.animations.play('left');
     }
     else if (cursors.down.isDown)
     {
-        drvoodo.body.velocity.y += 4;
+        player.body.velocity.y += 4;
+        player.animations.play('right');
     }
+    // console.log("down");
+    
 }
 
 
