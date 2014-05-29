@@ -19,7 +19,6 @@ var playermodel;
 window.onload = function() {
 
 	world = new CurrentArea();
-	playermodel = new PlayerModel();
 	
 	game = new Phaser.Game(
 			800,600,
@@ -30,6 +29,8 @@ window.onload = function() {
 
 	
 	function preload() {
+<<<<<<< HEAD
+
         game.load.image('drvoodo', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('girl', 'resources/0000_asdzug.png', 64, 100);
