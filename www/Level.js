@@ -31,8 +31,8 @@ Level.prototype = {
         this.layer[2] = this.map.createLayer('walls');
         this.layer[2].resizeWorld();
         
-        
-        //this.layer[2].debug = true;
+        this.map.setCollisionBetween(1, 20, true, 'walls');
+        this.layer[2].debug = true;
 
     },
 
