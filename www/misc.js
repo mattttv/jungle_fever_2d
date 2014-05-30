@@ -5,6 +5,12 @@ DIRECTION = {
     LEFT : 3
 }
 
+PLAYER_STATE = {
+    ATTACKING: 0,
+    MOVING: 1,
+    PICKUPING: 2
+}
+
 function debugPrint(message) {
   var debugOutput = true
   if (debugOutput) {
