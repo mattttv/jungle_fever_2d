@@ -71,22 +71,13 @@ window.onload = function() {
         setupFullScreen();
         setupKeys();
 
-
-
         if (START_RAIN) {
             setupAndStartRain();
         }
-
 	    // setUpDemoPlants(game);
 	    spawnArea(game, world);
-	    
-        //define keys
-
-
-
 
         screen_gui.create();
-
 	}
 
 	function update() {
