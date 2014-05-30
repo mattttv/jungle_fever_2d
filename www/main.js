@@ -124,6 +124,8 @@ window.onload = function() {
 
         emitter.minRotation = 0;
         emitter.maxRotation = 0;
+        
+        player.animations.play('down');
 
         if (START_RAIN) {
         	emitter.start(false, 1600, 5, 0);
