@@ -31,13 +31,13 @@ Level.prototype = {
         this.layer[2] = this.map.createLayer(2);
         this.layer[2].resizeWorld();
         
-        this.map.setCollisionBetween(1, 20, true, this.layer[2]);
-        this.layer[2].debug = true;
+        this.map.setCollision([73, 74, 75, 76, 77, 87, 88, 93, 94], true, this.layer[2]);
+        // this.layer[2].debug = true;
 
     },
 
-	update: function () {
-
+	update: function (player) {
+        this.game.physics.arcade.collide(player, this.layer[2]);
 	}
 };
 
