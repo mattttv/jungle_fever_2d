@@ -41,9 +41,6 @@ window.onload = function() {
 
 	function preload() {
         
-        /*game.load.tilemap('map', 'resources/firstGround.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('tiles', 'resources/werfeg.jpg');*/
-        
         level = new Level(game);
         level.preload();
 
@@ -62,13 +59,6 @@ window.onload = function() {
 
 
     function create () {
-
-        /*game.stage.backgroundColor = '#4f5d3e';
-        
-        map = game.add.tilemap('map');
-        map.addTilesetImage('werfeg', 'tiles');
-        layer = map.createLayer('ground');
-        layer.resizeWorld();*/
         
         level.create();
             
@@ -141,8 +131,7 @@ window.onload = function() {
 	function update() {
 	    doGameController(game, cursors);
         
-        // game.physics.collide(player, level.layer[2]);
-        game.physics.arcade.TILE_BIAS = 40;
+        level.update(player);
 	    
 	    doUpdates(game);
 
