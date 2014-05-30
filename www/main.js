@@ -37,13 +37,8 @@ window.onload = function() {
 			{ preload: preload, create: create, update: update, render: render });
 	
 	world = new CurrentArea(game);
-	playermodel = new PlayerModel();
+	playermodel = new PlayerModel(game);
 	screen_gui = new HUD(game);
-
-	// Attach the "worldmodel" to the game (for easy retrieval).
-	// (game.world is the internal phaser.io world, this one is for the
-	// 'behind the scenes' model.
-    game.worldmodel = world;
 
 	function preload() {
         

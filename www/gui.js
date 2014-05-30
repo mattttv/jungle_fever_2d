@@ -49,11 +49,12 @@ HUD.prototype = {
 			}
 		}
 		
-		
+		// Clean In-Game Texts
 		for(var t in this.texts) {
 			game.world.remove(this.texts[t]);
 		}
 		
+		// Add in-game texts for people
 		for (p in this.game.worldmodel.people) {
 			var pers = this.game.worldmodel.people[p];
 			var nmbr = game.add.bitmapText(pers.sprite.body.x,
@@ -62,6 +63,8 @@ HUD.prototype = {
 					Math.round(pers.hp,0).toString(), 12);
 			this.texts.push(nmbr);
 		}
+		
+		// Add inventory display
 	}
 };
 

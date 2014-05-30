@@ -8,6 +8,7 @@
  */
 function CurrentArea(game) {
 	this.game = game;
+	this.game.worldmodel = this;
 	//this.plants=[];
 	//this.people=[];
 	this.sprites={};
@@ -50,13 +51,13 @@ CurrentArea.prototype.init = function(game) {
 
 //----------------------------------------------------------------------------
 
-/**
- * Class to represent the VODOO PLANTS !
- */
-function VoodoPlant(name) {
-	this.type="plant";
-	this.name = name;
-}
+///**
+// * Class to represent the VODOO PLANTS !
+// */
+//function VoodoPlant(name) {
+//	this.type="plant";
+//	this.name = name;
+//}
 
 //----------------------------------------------------------------------------
 
@@ -64,8 +65,18 @@ function VoodoPlant(name) {
  * Housekeeping of player skills, items, etc.
  * @returns
  */
-function PlayerModel() {
+function PlayerModel(game) {
+	this.game = game;
 	this.inventory=[];
+	this.game.playermodel = this;
+	this.invcounts={};
+}
+
+PlayerModel.prototype = {
+		addPlant : function(plantname) {
+			this.inventory.push(plantname);
+			this.invcounts[plantname]+=1;
+		}
 }
 
 //----------------------------------------------------------------------------

@@ -127,10 +127,9 @@ function doUpdates(game) {
 	// Test for overlaps between the player and the group of plants
     // in world object.
     game.physics.arcade.overlap(player, world.sprites['plants'], function(o1,o2) {
-		console.log(o2.plant_tag);
     	o2.destroy();
-    	// TODO : put into player's inventory
-		
+    	console.log("Picked up " + o2.plant_tag);
+    	game.playermodel.addPlant(o2.plant_tag);
 	});
 
     game.physics.arcade.overlap(player, world.sprites['people'], function(plr, pers) {
