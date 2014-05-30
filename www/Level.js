@@ -8,10 +8,10 @@ Level = function (game) {
 Level.prototype = {
 
 	preload: function () {
-		this.game.load.tilemap('map', 'resources/level01.json', null, Phaser.Tilemap.TILED_JSON);
-        this.game.load.image('tiles', 'resources/ground.jpg');
-        this.game.load.image('tiles1', 'resources/overlaye.png');
-        this.game.load.image('tiles2', 'resources/stones.png');
+		this.game.load.tilemap('map', 'resources/level02.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.image('tiles', 'resources/floor_tile.png');
+        // this.game.load.image('tiles1', 'resources/overlaye.png');
+        // this.game.load.image('tiles2', 'resources/stones.png');
 	},
 
 	create: function () {
@@ -20,18 +20,18 @@ Level.prototype = {
 		this.game.stage.backgroundColor = '#4f5d3e';
         
         this.map = this.game.add.tilemap('map');
-        this.map.addTilesetImage('ground', 'tiles');
-        this.map.addTilesetImage('overlaye', 'tiles1');
-        this.map.addTilesetImage('stones', 'tiles2');
+        this.map.addTilesetImage('floor_tile', 'tiles');
+        // this.map.addTilesetImage('overlaye', 'tiles1');
+        // this.map.addTilesetImage('stones', 'tiles2');
         
-        this.layer[0] = this.map.createLayer('ground');
+        this.layer[0] = this.map.createLayer(0);
         this.layer[0].resizeWorld();
-        this.layer[1] = this.map.createLayer('overlaye');
+        this.layer[1] = this.map.createLayer(1);
         this.layer[1].resizeWorld();
-        this.layer[2] = this.map.createLayer('walls');
+        this.layer[2] = this.map.createLayer(2);
         this.layer[2].resizeWorld();
         
-        this.map.setCollisionBetween(1, 20, true, 'walls');
+        this.map.setCollisionBetween(1, 20, true, this.layer[2]);
         this.layer[2].debug = true;
 
     },
