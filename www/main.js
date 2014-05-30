@@ -57,6 +57,8 @@ window.onload = function() {
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
+        
+        game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
         screen_gui.preload();
 	}

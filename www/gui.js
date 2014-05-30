@@ -3,6 +3,7 @@ function HUD(game) {
 	this.font;
 	this.bmpText;	
 	this.textpos=0;
+	this.show_help = SHOW_HELP;
 
 	// keep tracks of textparts on the screen
 	this.texts=[];
@@ -30,16 +31,24 @@ HUD.prototype = {
 
 	update: function () {
 		
-		// Sliding text
-		this.textpos-=2;
-		if(this.textpos< -600) {
-			this.textpos = 400;
-			this.linecounter = (this.linecounter+1) % this.lines.length;
+		if (this.show_help) {
+			// Sliding text
+			this.textpos-=2;
+			if(this.textpos< -600) {
+				this.textpos = 400;
+				this.linecounter = (this.linecounter+1) % this.lines.length;
+			}
+			
+			game.world.remove(this.bmpText);
+			this.bmpText = game.add.bitmapText(this.textpos, 0, 'nokia',
+					this.lines[this.linecounter], 64);
+		} else {
+			if (this.bmpText) {
+				game.world.remove(this.bmpText);
+				delete this.bmpText;
+			}
 		}
-		game.world.remove(this.bmpText);
-		this.bmpText = game.add.bitmapText(this.textpos, 0, 'nokia',
-				this.lines[this.linecounter], 64);
-
+		
 		
 		for(var t in this.texts) {
 			game.world.remove(this.texts[t]);

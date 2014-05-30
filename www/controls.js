@@ -63,6 +63,11 @@ function doGameController(game, cursors) {
         player.attack_happened = false;
         lastanim_blocked = false;
     }
+    
+    if ( ! movement_happend) {
+    	//player.body.velocity.x = 0;
+        //player.body.velocity.y = 0;	
+    }
 
 }
         
