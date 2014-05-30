@@ -167,11 +167,11 @@ Person.prototype.die = function() {
 Person.prototype.beHealed = function () {
 	
 	if (this.diseases.length > 0) {
-		// Remove (heal) all diseases
+		// Remove (heal) all disease
 		this.diseases = [];
 		
 		// Set immunity level
-		this.immunity = 2+ Math.round(Math.random()*3,2);
+		this.immunity = 1+ Math.round(Math.random()*2,0);
 		
 		this.sprite.animations.play('gethealed');
 	}
@@ -187,7 +187,7 @@ Person.prototype.beHealed = function () {
  */
 function Disease(drain) {
 	this.name = "Voodoo curse";
-	this.drain = 0.01;	// drain per effective drain
+	this.drain = 0.025;	// drain per effective drain
 	this.TICKLIMIT = 1000;	// drain every TICKLIMIT ticks
 	this.tickcount = this.TICKLIMIT;
 	
@@ -258,9 +258,9 @@ RandomActionEmitter.prototype = {
 function Environment(game) {
 	this.game = game;
 	this.next_disease_state = 0;
-	this.DEFAULT_VAL = 10000;
+	this.DEFAULT_VAL = 1000;
 	
-	this.plants_respawn = new RandomActionEmitter(this.DEFAULT_VAL*5);
+	this.plants_respawn = new RandomActionEmitter(this.DEFAULT_VAL*20);
 }
 
 Environment.prototype = {
