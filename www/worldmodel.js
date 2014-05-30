@@ -17,6 +17,8 @@ function CurrentArea(game) {
 	//this.people=[];
 	this.sprites={};
 	this.people=[];
+	
+	this.enivronment = new Environment(game);
 }
 
 CurrentArea.prototype.doUpdates = function(game) {
@@ -38,7 +40,9 @@ CurrentArea.prototype.doUpdates = function(game) {
 				pers.die();
 				// TODO: remove from people list !
 			}
-		} 
+		}
+		
+		this.enivronment.update(ticks);
 	}
 	
 }
@@ -105,10 +109,32 @@ function Disease(drain) {
 	if (drain) {
 		this.drain = drain;
 	}
-	
 }
 
 Disease.prototype.affectPerson = function(person, time_ticks) {
 	person.hp-=this.drain * time_ticks;
-	// console.log(person.hp);
+}
+
+
+function Environment(game) {
+	this.game = game;
+	this.next_disease_state = 0;
+	this.DEFAULT_VAL = 10000;
+}
+
+Environment.prototype = {
+	getNewRandomState: function(value) {
+		return value + Math.random(value);
+	},
+	reset: function() {
+		this.next_disease_state = this.getNewRandomState(this.DEFAULT_VAL);
+	},
+	update: function(ticks) {
+		this.next_disease_state-=ticks;
+		
+		if (this.next_disease_state < 0) {
+			this.next_disease_state = this.getNewRandomState(this.DEFAULT_VAL);
+			console.log("Somthing happend!");
+		}
+	}
 }

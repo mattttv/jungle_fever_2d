@@ -24,7 +24,7 @@ var screen_gui;
 window.onload = function() {
 
 	game = new Phaser.Game(
-			GAME_SIZE[0],GAME_SIZE[1],
+			GAME_SIZE[0], GAME_SIZE[1],
 			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
 			'Jungle Fever 2.0 - Dr. Voodo returns', 
@@ -33,6 +33,11 @@ window.onload = function() {
 	world = new CurrentArea(game);
 	playermodel = new PlayerModel();
 	screen_gui = new HUD(game);
+
+	// Attach the "worldmodel" to the game (for easy retrieval).
+	// (game.world is the internal phaser.io world, this one is for the
+	// 'behind the scenes' model.
+    game.worldmodel = world;
 
 	function preload() {
         game.load.image('people', 'resources/pineapple.png');
