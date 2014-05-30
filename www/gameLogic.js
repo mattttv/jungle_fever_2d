@@ -43,10 +43,13 @@ function doAttackPlayerLogic() {
       player.rangex); //h
     break;
   }
+  doAttackOverlapWithPlayer(marker);
 }
 
 
-function doAttackOverlapWithPlayer() {
+function doAttackOverlapWithPlayer(marker) {
+
+  //marker.destroy();
 	/*
 	game.physics.arcade.overlap(player, , function(o1,o2) {
 		console.log(o2.plant_tag);
