@@ -16,25 +16,25 @@ var playermodel;
 
 var debugOutput = true;
 var debugCamera = false;
+var emitter;
 
 /*
  * Main
  */
 window.onload = function() {
 
-	world = new CurrentArea();
-	playermodel = new PlayerModel();
-	
 	game = new Phaser.Game(
 			800,600,
 			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
 			'Jungle Fever 2.0 - Dr. Voodo returns', 
 			{ preload: preload, create: create, update: update, render: render });
-
+	
+	world = new CurrentArea(game);
+	playermodel = new PlayerModel();
 	
 	function preload() {
-        game.load.image('drvoodo', 'resources/pineapple.png');
+        game.load.image('people', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
@@ -47,7 +47,7 @@ window.onload = function() {
         setup_player();
         music = game.add.audio('village',1,true);
 
-        music.play('',0,1,true);
+        // music.play('',0,1,true);
         
         game.stage.backgroundColor = '#462';
             
@@ -59,9 +59,14 @@ window.onload = function() {
 	    // enable physics for collision etc.
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
 	    game.physics.enable(player, Phaser.Physics.ARCADE);
-
 	    player.body.collideWorldBounds = true;
 	    player.body.bounce.set(1);
+	    // reduce player body size - collision happens not as far away ? 
+	    player.body.offset.x=20;
+	    player.body.offset.y=30;
+	    player.body.height-=35;
+	    player.body.width-=35;
+        
 
 	    cursors = game.input.keyboard.createCursorKeys();
 
@@ -70,7 +75,7 @@ window.onload = function() {
 
         setupFullScreen();
         
-        var emitter = game.add.emitter(game.world.centerX, 0, 400);
+        emitter = game.add.emitter(game.world.centerX, 0, 400);
 
         emitter.width = game.world.width;
         // emitter.angle = 30; // uncomment to set an angle for the rain.
@@ -86,7 +91,7 @@ window.onload = function() {
         emitter.minRotation = 0;
         emitter.maxRotation = 0;
 
-	emitter.start(false, 1600, 5, 0);
+        emitter.start(false, 1600, 5, 0);
 
 	}
 
@@ -127,7 +132,7 @@ window.onload = function() {
         player.animations.add('attack_up', [8, 12], 5, true);
         player.animations.add('attack_right', [9, 13], 5, true);
         player.animations.add('attack_down', [10, 14], 5, true);
-        player.animations.add('attack_left', [11, 15], 5, true);               
+        player.animations.add('attack_left', [11, 15], 5, true);       
     
 }    
  
