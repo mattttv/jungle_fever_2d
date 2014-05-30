@@ -251,7 +251,6 @@ RandomActionEmitter.prototype = {
 }
 
 // ----------------------------------------------------------------------------
-
 /**
  * This will produce random events after certain ticks.
  * (To make people sick, change weather, re-grow plants etc.)
@@ -277,7 +276,7 @@ Environment.prototype = {
 		
 		if (this.plants_respawn.update(ticks)) {
 			console.log('respawn plants');
-			spawnPlants(game, world); // call works only with globals - WTF
+			initPlants(game, world); // call works only with globals - WTF
 		}
 		
 		if (this.next_disease_state < 0) {

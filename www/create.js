@@ -6,34 +6,15 @@
  * @param world
  */
 function spawnArea(game, world) {
-	world.init(game);
+    game.stage.backgroundColor = '#462';
 
-	spawnPlants(game, world);
+    world.init(game);
+
+	initPlants(game, world);
 
     initEnemies();
     
-    var i = 0;
-
-	world.sprites['people'] = game.add.group();
-	world.sprites['people'].enableBody = true;
-	for (var i = 0; i < 5; i++) {
-		// Create sprite.
-        var s = world.sprites['people'].create(
-        		Math.random()*350+300, Math.random()*400+150, 
-        		'villageguy');
-        
-        s.animations.add('happy', [2], 20, false);
-        s.animations.add('getsick', [0], 20, false);
-        s.animations.add('gethealed', [2], 20, false);
-        s.animations.add('die', [1], 20, false);
-        s.animations.play('happy');
-        
-        // Create world object and link the two.
-        var p = new Person();
-        s.worldEntity = p;
-        p.sprite = s;
-        world.people.push(p);
-	}
+    initPeople();
 	
 	// Make one big group of sprites, so we can do (depth) sorting
 	world.sprites['all'] = new Phaser.Group(game);
@@ -43,7 +24,7 @@ function spawnArea(game, world) {
 	world.sprites['all'].add(player);
 }
 
-function spawnPlants(game, world) {
+function initPlants(game, world) {
 	// world.sprites['plants'] = game.add.group();
 	world.sprites['plants'].enableBody = true;
 	for (var i = 0; i < 15; i++)
@@ -87,18 +68,30 @@ function initEnemies() {
 
 }
 
+function initPeople() {
+    world.sprites['people'] = game.add.group();
+    world.sprites['people'].enableBody = true;
+    for (var i = 0; i < 5; i++) {
+        // Create sprite.
+        var s = world.sprites['people'].create(
+                Math.random()*350+300, Math.random()*400+150, 
+                'villageguy');
+        
+        s.animations.add('happy', [2], 20, false);
+        s.animations.add('getsick', [0], 20, false);
+        s.animations.add('gethealed', [2], 20, false);
+        s.animations.add('die', [1], 20, false);
+        s.animations.play('happy');
+        
+        // Create world object and link the two.
+        var p = new Person();
+        s.worldEntity = p;
+        p.sprite = s;
+        world.people.push(p);
+    }
+}
+
 function setupPersonsAnim(game) {
 	
-}
-
-function setupFullScreen() {
-    // Maintain aspect ratio
-    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-
-    game.input.onDown.add(gofull, this);
-}
-
-function gofull() {
-    game.scale.startFullScreen();
 }
 

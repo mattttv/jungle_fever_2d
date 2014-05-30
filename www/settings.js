@@ -3,7 +3,7 @@ var START_MUSIC = false;
 
 var GAME_SIZE = [800,600];
 
-var START_RAIN = false;
+var START_RAIN = true;
 
 var RENDER_DEBUG = false;
 
