@@ -2,6 +2,7 @@
 var START_MUSIC = false;
 
 var GAME_SIZE = [800,600];
+//window.innerWidth, window.innerHeight,
 
 var START_RAIN = true;
 

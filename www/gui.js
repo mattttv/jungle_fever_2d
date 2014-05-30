@@ -1,4 +1,4 @@
-function HUD(game) {
+function GUI(game) {
 	this.game = game;	
 	this.font;
 	this.bmpText;	
@@ -17,7 +17,7 @@ function HUD(game) {
 	this.linecounter = 0;
 }
 
-HUD.prototype = {
+GUI.prototype = {
 
 	preload: function () {
 		// Load a bitmap font

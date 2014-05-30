@@ -1,27 +1,25 @@
 /*
- * Big Bunch of Globals:
+ * Big Bunch of Globals
+    by the way this works suprisingly well without globals and i dont know why?
  */
 var player;
-var people;
-var cursors;
-var upKey, downKey, leftKey, rightKey;
-var shiftKey;
-var dashKey;
-//var dust;
-var plants;
-var cursors;
-
 var game;
-var level;
-
 var world;
 var playermodel;
-
-var emitter;
-var screen_gui;
-
+var gui;
 var map;
 var layer;
+var cursors;
+//var people;
+
+//var shiftKey;
+//var dashKey;
+//var dust;
+//var plants;
+//var cursors;
+//var level;
+//var emitter;
+
 
 /*
  * Main
@@ -30,15 +28,12 @@ window.onload = function() {
 
 	game = new Phaser.Game(
 			GAME_SIZE[0], GAME_SIZE[1],
-			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
 			'Jungle Fever 2.0 - Dr. Voodo returns', 
 			{ preload: preload, create: create, update: update, render: render });
-	
 	world = new CurrentArea(game);
 	playermodel = new PlayerModel(game);
-	screen_gui = new HUD(game);
-
+	gui = new GUI(game);
 	function preload() {
         
         level = new Level(game);
@@ -51,12 +46,10 @@ window.onload = function() {
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
         game.load.spritesheet('dust', 'resources/dust.png', 17, 17);
-        
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
-
         game.load.spritesheet('shooter', 'resources/schießblume.png', 110, 100);
 
-        screen_gui.preload();
+        gui.preload();
 	}
 
 
@@ -77,17 +70,14 @@ window.onload = function() {
 	    // setUpDemoPlants(game);
 	    spawnArea(game, world);
 
-        screen_gui.create();
+        gui.create();
 	}
 
 	function update() {
 	    doGameController(game, cursors);
-        
         level.update(player);
-	    
 	    doUpdates(game);
-
-        screen_gui.update();
+        gui.update();
 	}
 
 	function render() {
@@ -102,7 +92,5 @@ window.onload = function() {
  	    }
 
 	}
-
- 
 };
 
