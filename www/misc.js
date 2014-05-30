@@ -12,8 +12,7 @@ PLAYER_STATE = {
 }
 
 function debugPrint(message) {
-  var debugOutput = true
-  if (debugOutput) {
+  if (DEBUGOUTPUT) {
   	console.log(message);
   }
 };

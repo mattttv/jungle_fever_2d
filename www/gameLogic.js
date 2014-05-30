@@ -9,7 +9,7 @@ function doAttackPlayerLogic() {
   player.damage = 10;
   var thickness = 0;
   
-  if (debugOutput) {
+  if (DEBUGOUTPUT) {
   	thickness = 2;
   }
 
@@ -70,7 +70,7 @@ function doAttackPlayerLogic() {
 
 function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
   var sprites = world.sprites['sprites'];
-  debugPrint("number of sprites: " + world.sprites['plants'].length);
+  debugPrint("number of sprites: " + world.sprites['enemy'].length);
   var plantX = 0;
   var plantY = 0;
   debugPrint("hitbox: markerX: " + markerX + 
@@ -79,15 +79,15 @@ function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
     " markerH " + markerH);
   for (var i = 0; i < 15; i++)
     {
-      plantX = world.sprites['plants'].getAt(i).x;
-      plantY = world.sprites['plants'].getAt(i).y;
-      debugPrint(world.sprites['plants'].getAt(i).id+ " plantx: "+plantX + 
+      plantX = world.sprites['enemy'].getAt(i).x;
+      plantY = world.sprites['enemy'].getAt(i).y;
+      debugPrint(world.sprites['enemy'].getAt(i).id+ " plantx: "+plantX + 
         " planty: " + plantY);
       if (plantX >= markerX && 
          plantX <= markerX + markerW &&
          plantY >= markerY &&
          plantY <= markerY + markerH) {
-        debugPrint("plant in range "+world.sprites['plants'].getAt(i).id)
+        debugPrint("plant in range "+world.sprites['enemy'].getAt(i).id)
       }
     }  
   /*
