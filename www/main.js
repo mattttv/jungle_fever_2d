@@ -72,6 +72,8 @@ window.onload = function() {
         layer.resizeWorld();*/
         
         level.create();
+        level.map.setCollisionBetween([2, 8, 10, 14, 16], true, level.layer[2]);
+        level.layer[2].debug = false;
             
         // setup_player(game, player);
         setup_player();
