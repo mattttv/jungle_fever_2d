@@ -157,24 +157,24 @@ window.onload = function() {
 
 	function setup_player(){
         player   = game.add.sprite(64, 0.5, 'girl');
-        player.last = 2;
-
-
-        //  Our two animations, walking left and right.
-        player.animations.add('up', [0, 4], 8, true);
-        player.animations.add('right', [1, 5], 8, true);
-        player.animations.add('down', [2, 6], 8, true);
-        player.animations.add('left', [3, 7], 8, true);
+        player.attack_happened = false;
+        player.last = DIRECTION.DOWN;
+        player.state = PLAYER_STATE.IDLE
+        
+        player.animations.add('up', [4, 0], 8, false);
+        player.animations.add('right', [5, 1], 8, false);
+        player.animations.add('down', [6, 2], 8, false);
+        player.animations.add('left', [7, 3], 8, false);
 
         player.animations.add('idleup', [0], 10, true);
         player.animations.add('idleright', [1], 10, true);
         player.animations.add('idledown', [2], 10, true);
-        player.animations.add('idleleft', [3], 10, true);
+        player.animations.add('idleleft', [3], 10, true); 
         
-        player.animations.add('attack_up', [8, 12], 5, true);
-        player.animations.add('attack_right', [9, 13], 5, true);
-        player.animations.add('attack_down', [10, 14], 5, true);
-        player.animations.add('attack_left', [11, 15], 5, true);       
+        player.animations.add('attack_up', [12, 8], 5, false);
+        player.animations.add('attack_right', [13, 9], 5, false);
+        player.animations.add('attack_down', [14, 10], 5, false);
+        player.animations.add('attack_left', [15, 11], 5, false);      
     
 	}    
  
