@@ -33,7 +33,7 @@ window.onload = function() {
 	function preload() {
         game.load.image('drvoodo', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/mushroom.png');
-        game.load.spritesheet('girl', 'resources/0000_asdzug.png', 64, 100);
+        game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
 
@@ -104,6 +104,7 @@ window.onload = function() {
 	}
 	function setup_player(){
         player   = game.add.sprite(64, 0.5, 'girl');
+        player.last = 2;
 
         //  Our two animations, walking left and right.
         player.animations.add('up', [0, 4], 8, true);
@@ -114,7 +115,12 @@ window.onload = function() {
         player.animations.add('idleup', [0], 10, true);
         player.animations.add('idleright', [1], 10, true);
         player.animations.add('idledown', [2], 10, true);
-        player.animations.add('idleleft', [3], 10, true);        
+        player.animations.add('idleleft', [3], 10, true); 
+        
+        player.animations.add('attack_up', [8, 12], 3, true);
+        player.animations.add('attack_right', [9, 13], 3, true);
+        player.animations.add('attack_down', [10, 14], 3, true);
+        player.animations.add('attack_left', [11, 15], 3, true);               
     
 }    
  

@@ -53,6 +53,23 @@ function doGameController(game, cursors) {
         
 function doAttack(player) {
     debugPrint("attack");
+    
+    switch(player.last) {
+        case 0:
+            player.animations.play('attack_left');
+            break;
+        case 1:
+            player.animations.play('attack_right');
+            break;
+        case 2:
+            player.animations.play('attack_up');
+            break;
+        case 3:
+            player.animations.play('attack_down');
+            break;                
+        default:
+            player.animations.play('attack_down');
+        }
 }
 
 /****
