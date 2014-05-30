@@ -22,7 +22,7 @@ var emitter;
 window.onload = function() {
 
 	game = new Phaser.Game(
-			800,600,
+			GAME_SIZE[0],GAME_SIZE[1],
 			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
 			'Jungle Fever 2.0 - Dr. Voodo returns', 
@@ -37,6 +37,11 @@ window.onload = function() {
         game.load.spritesheet('girl', 'resources/0000_asdzug.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
+        
+        // Load a bitmap font
+        game.load.bitmapFont('nokia', 
+        		'resources/fonts/nokia.png', 
+        		'resources/fonts/nokia.xml');
 
 	}
 
@@ -46,11 +51,12 @@ window.onload = function() {
         setup_player(game, player);
         music = game.add.audio('village',1,true);
 
-        // music.play('',0,1,true);
+        if (START_MUSIC) {
+        	music.play('',0,1,true);
+    	}
         
         game.stage.backgroundColor = '#462';
             
-
 	    // setUpDemoPlants(game);
 	    spawnArea(game, world);
 	    
@@ -87,23 +93,23 @@ window.onload = function() {
         emitter.minRotation = 0;
         emitter.maxRotation = 0;
 
-        emitter.start(false, 1600, 5, 0);
+        if (START_RAIN) {
+        	emitter.start(false, 1600, 5, 0);
+    	}
 
 	}
 
 	function update() {
-
-		
 	    doGameController(game, cursors);
-	    
-
 	    doUpdates(game);
+	    
 	    
 	}
 
 	function render() {
-
-// 	    game.debug.quadTree(game.physics.arcade.quadTree);
+		if(RENDER_DEBUG) {
+ 	    	game.debug.quadTree(game.physics.arcade.quadTree);
+ 	    }
 
 	}
 	function setup_player(){
@@ -119,10 +125,8 @@ window.onload = function() {
         player.animations.add('idleright', [1], 10, true);
         player.animations.add('idledown', [2], 10, true);
         player.animations.add('idleleft', [3], 10, true);   
-        
-        
     
-}    
+	}    
  
 };
 
