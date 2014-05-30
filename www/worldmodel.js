@@ -47,6 +47,8 @@ CurrentArea.prototype.doUpdates = function(game) {
 
 CurrentArea.prototype.init = function(game) {
 	this.last_time = game.time.now;
+	world.sprites['plants'] = game.add.group();
+	world.sprites['people'] = game.add.group();
 }
 
 //----------------------------------------------------------------------------
@@ -81,7 +83,7 @@ PlayerModel.prototype = {
 			
 			if (person.hasDisease()) {
 				 
-				if (this.invcounts[this.HERB_A] > 5) {
+				if (this.invcounts[this.HERB_A] >= 5) {
 					
 					// can heal + use herbs
 					
