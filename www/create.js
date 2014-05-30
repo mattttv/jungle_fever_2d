@@ -8,20 +8,7 @@
 function spawnArea(game, world) {
 	world.init(game);
 
-	// spawnPlants(game);
-	world.sprites['plants'] = game.add.group();
-	world.sprites['plants'].enableBody = true;
-	for (var i = 0; i < 15; i++)
-    {
-        var s = world.sprites['plants'].create(
-        		game.world.randomX, game.world.randomY, 
-        		'baddie');
-        s.body.collideWorldBounds = true;
-        s.body.bounce.set(1);
-        
-        s.plant_tag="gingerblossom";
-        s.id = s.plant_tag +  i;
-    }
+	spawnPlants(game, world);
 
     world.sprites['enemy'] = game.add.group();
     world.sprites['enemy'].enableBody = true;
@@ -43,7 +30,7 @@ function spawnArea(game, world) {
 	for (var i = 0; i < 5; i++) {
 		// Create sprite.
         var s = world.sprites['people'].create(
-        		Math.random()*200+50, Math.random()*200+50, 
+        		Math.random()*350+300, Math.random()*400+150, 
         		'villageguy');
         
         s.animations.add('happy', [2], 20, false);
@@ -66,8 +53,8 @@ function spawnArea(game, world) {
 	world.sprites['all'].add(player);
 }
 
-function spawnPlants(game) {
-	world.sprites['plants'] = game.add.group();
+function spawnPlants(game, world) {
+	// world.sprites['plants'] = game.add.group();
 	world.sprites['plants'].enableBody = true;
 	for (var i = 0; i < 15; i++)
     {

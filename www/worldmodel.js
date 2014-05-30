@@ -221,9 +221,13 @@ Disease.prototype.affectPerson = function(person, time_ticks) {
 /**
  * 
  */
-function RandomActionEmitter() {
+function RandomActionEmitter(val) {
 	this.state = 0;
 	this.DEFAULT_VAL = 1000;
+	
+	if(val!=undefined) {
+		this.DEFAULT_VAL = val;
+	}
 }
 
 RandomActionEmitter.prototype = {
@@ -255,6 +259,8 @@ function Environment(game) {
 	this.game = game;
 	this.next_disease_state = 0;
 	this.DEFAULT_VAL = 10000;
+	
+	this.plants_respawn = new RandomActionEmitter(this.DEFAULT_VAL*5);
 }
 
 Environment.prototype = {
@@ -267,6 +273,11 @@ Environment.prototype = {
 	update: function(ticks) {
 		var worldpeople = this.game.worldmodel.people;
 		this.next_disease_state-=ticks;
+		
+		if (this.plants_respawn.update(ticks)) {
+			console.log('respawn plants');
+			spawnPlants(game, world); // call works only with globals - WTF
+		}
 		
 		if (this.next_disease_state < 0) {
 			this.next_disease_state = this.getNewRandomState(this.DEFAULT_VAL);
