@@ -92,7 +92,6 @@ window.onload = function() {
 		
 	    doGameController(game, cursors);
 	    
-
 	    doUpdates(game);
 	    
 	}
@@ -117,10 +116,10 @@ window.onload = function() {
         player.animations.add('idledown', [2], 10, true);
         player.animations.add('idleleft', [3], 10, true); 
         
-        player.animations.add('attack_up', [8, 12], 3, true);
-        player.animations.add('attack_right', [9, 13], 3, true);
-        player.animations.add('attack_down', [10, 14], 3, true);
-        player.animations.add('attack_left', [11, 15], 3, true);               
+        player.animations.add('attack_up', [8, 12], 5, true);
+        player.animations.add('attack_right', [9, 13], 5, true);
+        player.animations.add('attack_down', [10, 14], 5, true);
+        player.animations.add('attack_left', [11, 15], 5, true);               
     
 }    
  
