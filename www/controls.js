@@ -31,40 +31,40 @@ function doGameController(game, cursors) {
         movement_happend = true;
     } 
     
-    if (!movement_happend) {
+    /*if (!movement_happend) {
     	switch(player.last) {
-        case 0:
+        case DIRECTION.LEFT:
             player.animations.play('idleleft');
             break;
-        case 1:
+        case DIRECTION.RIGHT:
             player.animations.play('idleright');
             break;
-        case 2:
+        case DIRECTION.UP:
             player.animations.play('idleup');
             break;
-        case 3:
+        case DIRECTION.DOWN:
             player.animations.play('idledown');
             break;                
         default:
             player.animations.play('idledown');
         }
-    }
+    }*/
 }
         
-function doAttack(player) {
+function doAttack() {
     debugPrint("attack");
     
     switch(player.last) {
-        case 0:
+        case DIRECTION.LEFT:
             player.animations.play('attack_left');
             break;
-        case 1:
+        case DIRECTION.RIGHT:
             player.animations.play('attack_right');
             break;
-        case 2:
+        case DIRECTION.UP:
             player.animations.play('attack_up');
             break;
-        case 3:
+        case DIRECTION.DOWN:
             player.animations.play('attack_down');
             break;                
         default:
