@@ -1,17 +1,26 @@
-function doAttackLogic() {
+function doAttackPlayerLogic() {
   //TODO del
-  player.range = 50;
-  switch(player.last) {
-  	/*
-    case DIRECTION.UP: 
-    		game.add.sprite(64, 0.5, 'girl');
-    		var attackRange = doAttackOverlapWithPlayer();
-    	break;
+  debugPrint("attack log");
+  
+  player.rangex = 50;
+  player.rangey = 20;
+  
+  if (debugOutput) {
+  	var thickness = 2;
   }
-  */
+
+  var marker = game.add.graphics();
+  marker.lineStyle(thickness, 0x000000, 1);
+
+  switch(player.last) {
+  	case DIRECTION.RIGHT: 
+  	marker.drawRect(player.x, player.y, player.rangex, player.rangey);
+  	break;
+  }
 }
 
-function boolean doAttackOverlapWithPlayer() {
+
+function doAttackOverlapWithPlayer() {
 	/*
 	game.physics.arcade.overlap(player, , function(o1,o2) {
 		console.log(o2.plant_tag);
@@ -20,4 +29,6 @@ function boolean doAttackOverlapWithPlayer() {
 		
 	});
 */
+return true;
+debugPrint("saufst du js?");
 }

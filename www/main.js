@@ -14,6 +14,9 @@ var game;
 var world;
 var playermodel;
 
+var debugOutput = true;
+var debugCamera = false;
+
 /*
  * Main
  */
@@ -41,7 +44,7 @@ window.onload = function() {
 
 
     function create () {
-        setup_player(game, player);
+        setup_player();
         music = game.add.audio('village',1,true);
 
         music.play('',0,1,true);
@@ -99,11 +102,16 @@ window.onload = function() {
 	function render() {
 
 // 	    game.debug.quadTree(game.physics.arcade.quadTree);
-
+        if (debugCamera) {
+          game.debug.cameraInfo(game.camera, 32, 32);
+          game.debug.spriteCoords(player, 32, 200);
+        }
 	}
+
 	function setup_player(){
         player   = game.add.sprite(64, 0.5, 'girl');
         player.last = 2;
+
 
         //  Our two animations, walking left and right.
         player.animations.add('up', [0, 4], 8, true);

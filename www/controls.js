@@ -53,7 +53,7 @@ function doGameController(game, cursors) {
         
 function doAttack() {
     debugPrint("attack");
-    doAttackLogic();
+    doAttackPlayerLogic();
     switch(player.last) {
         case DIRECTION.LEFT:
             player.animations.play('attack_left');
