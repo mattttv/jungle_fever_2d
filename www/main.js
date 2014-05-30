@@ -10,6 +10,7 @@ var plants;
 var cursors;
 
 var game;
+var level;
 
 var world;
 var playermodel;
@@ -35,9 +36,11 @@ window.onload = function() {
 	
 	function preload() {
         
-        game.load.tilemap('map', 'resources/firstGround.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('tiles', 'resources/werfeg.jpg');
+        /*game.load.tilemap('map', 'resources/firstGround.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('tiles', 'resources/werfeg.jpg');*/
         
+        level = new Level(game);
+        level.preload();
 
         game.load.image('people', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/mushroom.png');
@@ -50,16 +53,19 @@ window.onload = function() {
 
     function create () {
         
-        // game.stage.backgroundColor = '#4f5d3e';
+        /*game.stage.backgroundColor = '#4f5d3e';
         
         map = game.add.tilemap('map');
-        map.addTilesetImage();
+        map.addTilesetImage('werfeg', 'tiles');
         layer = map.createLayer('ground');
-        layer.resizeWorld();
+        layer.resizeWorld();*/
+        
+        level.create();
             
         setup_player(game, player);
+        game.camera.follow(player);
+        
         music = game.add.audio('village',1,true);
-
         music.play('',0,1,true);
         
 	    // setUpDemoPlants(game);
