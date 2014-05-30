@@ -54,6 +54,8 @@ window.onload = function() {
         
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
+        game.load.spritesheet('shooter', 'resources/schießblume.png', 110, 100);
+
         screen_gui.preload();
 	}
 

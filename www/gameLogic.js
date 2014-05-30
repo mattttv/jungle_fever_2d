@@ -48,7 +48,15 @@ function doAttackPlayerLogic() {
 
 function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
   var hitbox = game.add.sprite(markerX, markerY,'empty');
+
+  var watchRange = false;
+  if (watchRange)
+    hitbox.visible = true;
+  else
+    hitbox.visible = false;
+  
   game.physics.enable(hitbox, Phaser.Physics.ARCADE);
+
   hitbox.enableBody = true;
   hitbox.body.x = markerX;
   hitbox.body.y = markerY;
@@ -62,6 +70,6 @@ function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
       debugPrint("HP: " + enemy.health + "/" + (enemy.health + player.damage));
     }
   );  
-
-  hitbox.destroy();
+  if (!watchRange)
+    hitbox.destroy();
 }

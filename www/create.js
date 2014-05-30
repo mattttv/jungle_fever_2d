@@ -16,7 +16,7 @@ function spawnArea(game, world) {
     {
         var e = world.sprites['enemies'].create(
                 50, 50, 
-                'enemies');
+                'shooter');
         e.body.collideWorldBounds = true;
         e.body.bounce.set(1);
         
@@ -79,7 +79,6 @@ function setupFullScreen() {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     game.input.onDown.add(gofull, this);
-
 }
 
 function gofull() {
