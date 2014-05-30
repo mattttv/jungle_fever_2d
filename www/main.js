@@ -16,6 +16,8 @@ var playermodel;
 
 var emitter;
 
+var screen_gui;
+
 /*
  * Main
  */
@@ -30,19 +32,16 @@ window.onload = function() {
 	
 	world = new CurrentArea(game);
 	playermodel = new PlayerModel();
-	
+	screen_gui = new HUD(game);
+
 	function preload() {
         game.load.image('people', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('girl', 'resources/0000_asdzug.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
-        
-        // Load a bitmap font
-        game.load.bitmapFont('nokia', 
-        		'resources/fonts/nokia.png', 
-        		'resources/fonts/nokia.xml');
 
+        screen_gui.preload();
 	}
 
 
@@ -97,11 +96,15 @@ window.onload = function() {
         	emitter.start(false, 1600, 5, 0);
     	}
 
+        screen_gui.create();
+
 	}
 
 	function update() {
 	    doGameController(game, cursors);
 	    doUpdates(game);
+
+        screen_gui.update();
 	    
 	    
 	}
