@@ -52,6 +52,12 @@ HUD.prototype = {
 				delete this.bmpText;
 			}
 		}
+
+        game.world.remove(this.bmpText);
+		this.bmpText = game.add.bitmapText(this.textpos, 0, 'nokia',
+				this.lines[this.linecounter], 64);
+        this.bmpText.fixedToCamera = true;
+
 		
 		// Clean In-Game Texts
 		for(var t in this.texts) {
