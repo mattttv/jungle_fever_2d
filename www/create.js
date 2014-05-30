@@ -29,7 +29,7 @@ function spawnArea(game, world) {
         		'people');
         // Create world object and link the two.
         var p = new Person();
-        s.world_entity = p;
+        s.worldEntity = p;
         p.sprite = s;
         world.people.push(p);
 	}

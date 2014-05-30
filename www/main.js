@@ -10,6 +10,7 @@ var plants;
 var cursors;
 
 var game;
+var level;
 
 var world;
 var playermodel;
@@ -17,6 +18,10 @@ var playermodel;
 var debugOutput = true;
 var debugCamera = false;
 var emitter;
+var screen_gui;
+
+var map;
+var layer;
 
 /*
  * Main
@@ -24,7 +29,7 @@ var emitter;
 window.onload = function() {
 
 	game = new Phaser.Game(
-			800,600,
+			GAME_SIZE[0], GAME_SIZE[1],
 			// window.innerWidth, window.innerHeight,
 			Phaser.CANVAS, 
 			'Jungle Fever 2.0 - Dr. Voodo returns', 
@@ -32,26 +37,55 @@ window.onload = function() {
 	
 	world = new CurrentArea(game);
 	playermodel = new PlayerModel();
-	
+	screen_gui = new HUD(game);
+
+	// Attach the "worldmodel" to the game (for easy retrieval).
+	// (game.world is the internal phaser.io world, this one is for the
+	// 'behind the scenes' model.
+    game.worldmodel = world;
+
 	function preload() {
+        
+        /*game.load.tilemap('map', 'resources/firstGround.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('tiles', 'resources/werfeg.jpg');*/
+        
+        level = new Level(game);
+        level.preload();
+
         game.load.image('people', 'resources/pineapple.png');
-        game.load.image('baddie', 'resources/mushroom.png');
+        game.load.image('baddie', 'resources/weeds.png');
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
 
+        screen_gui.preload();
 	}
 
 
     function create () {
+
+        /*game.stage.backgroundColor = '#4f5d3e';
+        
+        map = game.add.tilemap('map');
+        map.addTilesetImage('werfeg', 'tiles');
+        layer = map.createLayer('ground');
+        layer.resizeWorld();*/
+        
+        level.create();
+            
+        // setup_player(game, player);
         setup_player();
+        game.camera.follow(player);
+        
         music = game.add.audio('village',1,true);
 
-        // music.play('',0,1,true);
+        if (START_MUSIC) {
+        	music.play('',0,1,true);
+    	}
         
         game.stage.backgroundColor = '#462';
             
-
+        
 	    // setUpDemoPlants(game);
 	    spawnArea(game, world);
 	    
@@ -91,26 +125,34 @@ window.onload = function() {
         emitter.minRotation = 0;
         emitter.maxRotation = 0;
 
-        emitter.start(false, 1600, 5, 0);
+        if (START_RAIN) {
+        	emitter.start(false, 1600, 5, 0);
+    	}
+
+        screen_gui.create();
 
 	}
 
 	function update() {
-
-		
 	    doGameController(game, cursors);
 	    
 	    doUpdates(game);
+
+        screen_gui.update();
 	    
 	}
 
 	function render() {
 
-// 	    game.debug.quadTree(game.physics.arcade.quadTree);
         if (debugCamera) {
           game.debug.cameraInfo(game.camera, 32, 32);
           game.debug.spriteCoords(player, 32, 200);
         }
+        
+		if(RENDER_DEBUG) {
+ 	    	game.debug.quadTree(game.physics.arcade.quadTree);
+ 	    }
+
 	}
 
 	function setup_player(){
@@ -127,14 +169,14 @@ window.onload = function() {
         player.animations.add('idleup', [0], 10, true);
         player.animations.add('idleright', [1], 10, true);
         player.animations.add('idledown', [2], 10, true);
-        player.animations.add('idleleft', [3], 10, true); 
+        player.animations.add('idleleft', [3], 10, true);
         
         player.animations.add('attack_up', [8, 12], 5, true);
         player.animations.add('attack_right', [9, 13], 5, true);
         player.animations.add('attack_down', [10, 14], 5, true);
         player.animations.add('attack_left', [11, 15], 5, true);       
     
-}    
+	}    
  
 };
 
