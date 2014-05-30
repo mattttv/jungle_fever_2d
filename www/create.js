@@ -22,6 +22,21 @@ function spawnArea(game, world) {
         s.plant_tag="gingerblossom";
         s.id = s.plant_tag +  i;
     }
+
+    world.sprites['enemy'] = game.add.group();
+    world.sprites['enemy'].enableBody = true;
+    for (i = 0; i < ENEMY_AMOUNT; i++)
+    {
+        debugPrint("added enemy");
+        var s = world.sprites['enemy'].create(
+                50, 50, 
+                'enemy');
+        s.body.collideWorldBounds = true;
+        s.body.bounce.set(1);
+        
+        s.name="enemy";
+        s.id = s.name +  i;
+    }
 	
 	world.sprites['people'] = game.add.group();
 	world.sprites['people'].enableBody = true;

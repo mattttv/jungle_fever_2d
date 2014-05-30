@@ -11,4 +11,6 @@ var DEBUGOUTPUT = true;
 
 var DEBUGCAMERA = true;
 
-SHOW_HELP = true;
+var SHOW_HELP = false;
+
+var ENEMY_AMOUNT = 1;
