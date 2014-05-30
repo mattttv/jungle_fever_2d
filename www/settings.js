@@ -10,3 +10,5 @@ var RENDER_DEBUG = false;
 var DEBUGOUTPUT = true;
 
 var DEBUGCAMERA = true;
+
+SHOW_HELP = true;

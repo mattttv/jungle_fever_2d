@@ -5,6 +5,8 @@ var player;
 var people;
 var cursors;
 var upKey, downKey, leftKey, rightKey;
+var shiftKey;
+var dashKey;
 
 var plants;
 var cursors;
@@ -34,13 +36,8 @@ window.onload = function() {
 			{ preload: preload, create: create, update: update, render: render });
 	
 	world = new CurrentArea(game);
-	playermodel = new PlayerModel();
+	playermodel = new PlayerModel(game);
 	screen_gui = new HUD(game);
-
-	// Attach the "worldmodel" to the game (for easy retrieval).
-	// (game.world is the internal phaser.io world, this one is for the
-	// 'behind the scenes' model.
-    game.worldmodel = world;
 
 	function preload() {
         
@@ -55,6 +52,8 @@ window.onload = function() {
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
+        
+        game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
         screen_gui.preload();
 	}
@@ -70,6 +69,8 @@ window.onload = function() {
         layer.resizeWorld();*/
         
         level.create();
+        level.map.setCollisionBetween([2, 8, 10, 14, 16], true, level.layer[2]);
+        level.layer[2].debug = false;
             
         // setup_player(game, player);
         setup_player();
@@ -99,11 +100,15 @@ window.onload = function() {
 	    player.body.height-=35;
 	    player.body.width-=35;
         
-
+        //define keys
 	    cursors = game.input.keyboard.createCursorKeys();
-
         attackKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
         attackKey.onDown.add(doAttack, this);
+        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
+        shiftKey.onDown.add(doDash, this);
+        
+        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
+        
 
         setupFullScreen();
         
@@ -174,7 +179,9 @@ window.onload = function() {
         player.animations.add('attack_up', [12, 8], 5, false);
         player.animations.add('attack_right', [13, 9], 5, false);
         player.animations.add('attack_down', [14, 10], 5, false);
-        player.animations.add('attack_left', [15, 11], 5, false);      
+        player.animations.add('attack_left', [15, 11], 5, false);
+        
+        player.worldEntity = playermodel;
     
 	}    
  

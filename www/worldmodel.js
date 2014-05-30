@@ -1,18 +1,14 @@
-///**
-// * Object / class to keep track of objects states in the world.
-// */
-//function WorldModel() {
-//
-//	
-//}
 
 /**
  * All the things in the "current area" -> for example, the screen. Or the 
  * world. Or an arbitrary area.
  * 
+ * Worldmodel class.
+ * 
  */
 function CurrentArea(game) {
 	this.game = game;
+	this.game.worldmodel = this;
 	//this.plants=[];
 	//this.people=[];
 	this.sprites={};
@@ -42,8 +38,10 @@ CurrentArea.prototype.doUpdates = function(game) {
 			}
 		}
 		
-		this.enivronment.update(ticks);
+		pers.update(ticks);
 	}
+	
+	this.enivronment.update(ticks);
 	
 }
 
@@ -51,34 +49,84 @@ CurrentArea.prototype.init = function(game) {
 	this.last_time = game.time.now;
 }
 
+//----------------------------------------------------------------------------
 
-/**
- * Class to represent the VODOO PLANTS !
- */
-function VoodoPlant(name) {
-	this.type="plant";
-	this.name = name;
-}
+///**
+// * Class to represent the VODOO PLANTS !
+// */
+//function VoodoPlant(name) {
+//	this.type="plant";
+//	this.name = name;
+//}
 
-
+//----------------------------------------------------------------------------
 
 /**
  * Housekeeping of player skills, items, etc.
  * @returns
  */
-function PlayerModel() {
-	this.inventory=[];
+function PlayerModel(game) {
+	this.HERB_A = 'gingerblossom';
+	this.game = game;
+	//this.inventory=[];
+	this.game.playermodel = this;
+	this.invcounts={};
 }
 
-//PlayerModel.prototype.demoMethod = function() {
-//	
-//}
+PlayerModel.prototype = {
+		healPerson : function(person) {
+			
+			// TODO : add more complex logic to determine which
+			// 			herbs can heal which disease ...
+			
+			if (person.hasDisease()) {
+				 
+				if (this.invcounts[this.HERB_A] > 5) {
+					
+					// can heal + use herbs
+					
+					this.invcounts[this.HERB_A]-=5;
+					person.beHealed();
+					
+				} else {
+					
+					// sorry not enough herbs
+				}
+			}
+			
+		},
+		addPlant : function(plantname) {
+			if (this.invcounts[plantname] == undefined)
+				this.invcounts[plantname] = 0;
+			this.invcounts[plantname]+=1;
+		}
+}
+
+//----------------------------------------------------------------------------
+
+/**
+ * Persons / your fellow village-people.
+ * They get affected by sickness and want healing.
+ * @returns
+ */
 
 function Person() {
 	this.hp = 100;
 	this.diseases = [];
 	this.died = false;
 	this.immunity = 0;
+}
+
+Person.prototype.preload = function() {
+	
+}
+
+Person.prototype.create = function() {
+	
+}
+
+
+Person.prototype.update = function(ticks) {
 	
 }
 
@@ -86,10 +134,17 @@ Person.prototype.addDefaultDisease = function() {
 	this.addDisease(new Disease(1));
 }	
 
+Person.prototype.hasDisease = function() {
+	return this.diseases.length > 0;
+}	
+
 Person.prototype.addDisease = function(dis) {
 	if (this.immunity < 1) {
+		// gets sick
 		this.diseases.push(dis);
+		this.sprite.animations.play('getsick');
 	} else {
+		// not sick this time
 		this.immunity--;
 	}
 }	
@@ -104,12 +159,20 @@ Person.prototype.die = function() {
 }
 
 Person.prototype.beHealed = function () {
-	// Remove all diseases
-	this.diseases = [];
 	
-	// Set immunity level
-	this.immunity = 5;
+	if (this.diseases.length > 0) {
+		// Remove (heal) all diseases
+		this.diseases = [];
+		
+		// Set immunity level
+		this.immunity = 2+ Math.round(Math.random()*3,2);
+		
+		this.sprite.animations.play('gethealed');
+	}
 }
+
+
+// ----------------------------------------------------------------------------
 
 
 /** 
@@ -144,6 +207,39 @@ Disease.prototype.affectPerson = function(person, time_ticks) {
 		person.hp-= this.drain;;
 	}
 }
+
+
+// ----------------------------------------------------------------------------
+
+
+/**
+ * 
+ */
+function RandomActionEmitter() {
+	this.state = 0;
+	this.DEFAULT_VAL = 1000;
+}
+
+RandomActionEmitter.prototype = {
+	getNewRandomState: function(value) {
+		return value + Math.random() * value;
+	},
+	reset: function() {
+		this.state = this.getNewRandomState(this.DEFAULT_VAL);
+	},
+	update: function(ticks) {
+		this.state-=ticks;
+		if (this.state < 0) {
+			this.state = this.getNewRandomState(this.DEFAULT_VAL);
+			// return true ? or accept callback call that ? 
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+// ----------------------------------------------------------------------------
 
 /**
  * This will produce random events after certain ticks.
