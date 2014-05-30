@@ -6,6 +6,7 @@ var people;
 var cursors;
 var upKey, downKey, leftKey, rightKey;
 var shiftKey;
+var dashKey;
 
 var plants;
 var cursors;
@@ -103,6 +104,8 @@ window.onload = function() {
 	    cursors = game.input.keyboard.createCursorKeys();
         attackKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
         attackKey.onDown.add(doAttack, this);
+        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
+        shiftKey.onDown.add(doDash, this);
         
         shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
         

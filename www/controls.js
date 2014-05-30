@@ -100,7 +100,7 @@ function doAttack() {
     doAttackPlayerLogic();
     player.attack_happened = true;
     switch(player.last) {
-     case DIRECTION.LEFT:
+        case DIRECTION.LEFT:
             player.animations.play('attack_left');
             break;
         case DIRECTION.RIGHT:
@@ -117,6 +117,33 @@ function doAttack() {
     }
 }
 
+function doDash() {
+    var pspeed = 400;
+    debugPrint("dash");
+    doAttackPlayerLogic();
+    player.attack_happened = true;
+    switch(player.last) {
+     case DIRECTION.LEFT:
+            player.animations.play('attack_left');
+            player.body.velocity.x -= pspeed;    
+            break;
+        case DIRECTION.RIGHT:
+            player.animations.play('attack_right');
+            player.body.velocity.x += pspeed;    
+            break;
+        case DIRECTION.UP:
+            player.animations.play('attack_up');
+            player.body.velocity.y -=pspeed;
+            break;
+        case DIRECTION.DOWN:
+            player.animations.play('attack_down');
+            player.body.velocity.y +=pspeed;
+            break;                
+        default:
+            player.animations.play('attack_down');
+    }
+    
+}
 /****
 Game Updates
 *****/
