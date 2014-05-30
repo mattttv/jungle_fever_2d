@@ -79,7 +79,13 @@ function doUpdates(game) {
     	// TODO : put into player's inventory
 		
 	});
+
+    game.physics.arcade.overlap(player, world.sprites['people'], function(plr, pers) {
+    	pers.worldEntity.beHealed();
+	});
     
+    
+    // DEMO : kick things around
 //    game.physics.arcade.collide(player, world.sprites['people'], function(o1,o2) {
 //		//console.log(o2.plant_tag);
 //    	//o2.destroy();
