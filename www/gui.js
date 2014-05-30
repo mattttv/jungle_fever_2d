@@ -33,31 +33,27 @@ HUD.prototype = {
 	update: function () {
 		var offsetx = game.camera.view.x,
 			offsety = game.camera.view.y;
+		
 		if (this.show_help) {
-			// Sliding text
-			this.textpos-=2;
+			// Sliding help text
+			this.textpos-=3;
 			if(this.textpos< -600) {
 				this.textpos = 400;
 				this.linecounter = (this.linecounter+1) % this.lines.length;
 			}
-			
 			game.world.remove(this.bmpText);
-			this.bmpText = game.add.bitmapText(offsetx + this.textpos, 
-					offsety + 0, 
+			this.bmpText = game.add.bitmapText(
+					this.textpos, 
+					game.camera.view.height - 100, 
 					'nokia',
 					this.lines[this.linecounter], 64);
+	        this.bmpText.fixedToCamera = true;
 		} else {
 			if (this.bmpText) {
 				game.world.remove(this.bmpText);
 				delete this.bmpText;
 			}
 		}
-
-        game.world.remove(this.bmpText);
-		this.bmpText = game.add.bitmapText(this.textpos, 0, 'nokia',
-				this.lines[this.linecounter], 64);
-        this.bmpText.fixedToCamera = true;
-
 		
 		// Clean In-Game Texts
 		for(var t in this.texts) {
@@ -77,6 +73,13 @@ HUD.prototype = {
 		}
 		
 		// Add inventory display
+		var nmbr = game.add.bitmapText(
+				offsetx + 10,
+				offsety + 10,
+				'nokia',
+				'Plants: ' + game.playermodel.getInventoryCount().toString(),
+				24);
+		this.texts.push(nmbr);
 	}
 };
 

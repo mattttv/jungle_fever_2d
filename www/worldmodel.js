@@ -99,6 +99,9 @@ PlayerModel.prototype = {
 			if (this.invcounts[plantname] == undefined)
 				this.invcounts[plantname] = 0;
 			this.invcounts[plantname]+=1;
+		},
+		getInventoryCount : function() {
+			return this.invcounts[this.HERB_A] || 0;
 		}
 }
 
