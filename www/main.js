@@ -49,6 +49,7 @@ window.onload = function() {
 
         game.load.image('people', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/weeds.png');
+        game.load.image('enemie', 'resources/pineapple.png');
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
