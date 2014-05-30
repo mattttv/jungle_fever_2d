@@ -11,29 +11,6 @@ function spawnArea(game, world) {
 	spawnPlants(game, world);
 
     initEnemies();
-    world.sprites['enemies'] = game.add.group();
-    world.sprites['enemies'].enableBody = true;
-    for (var i = 0; i < SHOOTER_AMOUNT; i++)
-    {
-        var e = world.sprites['enemies'].create(
-                50*i, 50*i, 
-                'shooter');
-        e.body.collideWorldBounds = true;
-        e.body.bounce.set(1);
-        
-        //e.name="bad guy ";
-        //e.id = e.name +  i;
-        e.health = SHOOTER_HEALTH;
-        e.name = "bad guy";
-        e.id = this.name + " " + i;
-        
-        //TODO this does not work ... push not defined for undefined ;(
-        var eObject = new Enemy("bad guy",i);
-        e.worldEntity = eObject;
-        debugPrint(eObject);
-        eObject.sprite = e;
-        world.enemies.push(eObject);
-    }
     
     var i = 0;
 
@@ -83,7 +60,30 @@ function spawnPlants(game, world) {
 }
 
 function initEnemies() {
-    
+        world.sprites['enemies'] = game.add.group();
+    world.sprites['enemies'].enableBody = true;
+    for (var i = 0; i < SHOOTER_AMOUNT; i++)
+    {
+        var e = world.sprites['enemies'].create(
+                50*i, 50*i, 
+                'shooter');
+        e.body.collideWorldBounds = true;
+        e.body.bounce.set(1);
+        
+        //e.name="bad guy ";
+        //e.id = e.name +  i;
+        e.health = SHOOTER_HEALTH;
+        e.name = "bad guy";
+        e.id = e.name + " " + i;
+        
+            /* not necessary?
+        var eObject = new Enemy("bad guy",i);
+        e.worldEntity = eObject;
+        debugPrint(eObject);
+        eObject.sprite = e;
+        world.enemies.push(eObject);
+        */
+    }
 
 }
 
