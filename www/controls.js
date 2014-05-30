@@ -118,31 +118,59 @@ function doAttack() {
 }
 
 function doDash() {
-    var pspeed = 400;
+    var pspeed = game.playermodel.dashSpeed;
     debugPrint("dash");
     doAttackPlayerLogic();
     player.attack_happened = true;
+    
+    if (player.last == DIRECTION.RIGHT)
+        dust = game.add.emitter(player.body.x+40, player.body.y+60, 50);
+    else if (player.last == DIRECTION.LEFT)
+        dust = game.add.emitter(player.body.x, player.body.y+60, 50);
+    else
+        dust = game.add.emitter(player.body.x+12, player.body.y+25, 50);
+    dust.width = 0;
+    
+
+    dust.makeParticles('dust');
+
+    dust.minParticleScale = 0.1;
+    dust.maxParticleScale = 0.5;
+
+    dust.minRotation = 0;
+    dust.maxRotation = 0;
+    
     switch(player.last) {
-     case DIRECTION.LEFT:
+        case DIRECTION.LEFT:
             player.animations.play('attack_left');
-            player.body.velocity.x -= pspeed;    
+            player.body.velocity.x -= pspeed;
+            dust.setXSpeed(10, 100);
+            dust.setYSpeed(-40, 5);
             break;
         case DIRECTION.RIGHT:
             player.animations.play('attack_right');
-            player.body.velocity.x += pspeed;    
+            player.body.velocity.x += pspeed;
+            dust.setXSpeed(-10, -100);
+            dust.setYSpeed(-40, 5);
             break;
         case DIRECTION.UP:
             player.animations.play('attack_up');
             player.body.velocity.y -=pspeed;
+            dust.setYSpeed(10, 100);
+            dust.setXSpeed(-30, 30);
             break;
         case DIRECTION.DOWN:
             player.animations.play('attack_down');
             player.body.velocity.y +=pspeed;
+            dust.setYSpeed(-30, -150);
+            dust.setXSpeed(-30, 30);
             break;                
         default:
             player.animations.play('attack_down');
     }
     
+    debugPrint(dust);
+    dust.start(true, 300, 30, 50);
 }
 /****
 Game Updates

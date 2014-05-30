@@ -7,7 +7,7 @@ var cursors;
 var upKey, downKey, leftKey, rightKey;
 var shiftKey;
 var dashKey;
-
+//var dust;
 var plants;
 var cursors;
 
@@ -53,6 +53,7 @@ window.onload = function() {
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
+        game.load.spritesheet('dust', 'resources/dust.png', 17, 17);
         
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
@@ -103,11 +104,11 @@ window.onload = function() {
 	    cursors = game.input.keyboard.createCursorKeys();
         attackKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
         attackKey.onDown.add(doAttack, this);
-        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
-        shiftKey.onDown.add(doDash, this);
         
         shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
         
+        dashKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
+        dashKey.onDown.add(doDash, this);
 
         setupFullScreen();
         

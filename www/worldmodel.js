@@ -71,6 +71,7 @@ function PlayerModel(game) {
 	//this.inventory=[];
 	this.game.playermodel = this;
 	this.invcounts={};
+    this.dashSpeed=300;
 }
 
 PlayerModel.prototype = {
