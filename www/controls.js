@@ -133,7 +133,7 @@ function doUpdates(game) {
 	});
 
     game.physics.arcade.overlap(player, world.sprites['people'], function(plr, pers) {
-    	pers.worldEntity.beHealed();
+    	plr.worldEntity.healPerson(pers.worldEntity);
 	});
     
     

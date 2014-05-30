@@ -66,15 +66,38 @@ CurrentArea.prototype.init = function(game) {
  * @returns
  */
 function PlayerModel(game) {
+	this.HERB_A = 'gingerblossom';
 	this.game = game;
-	this.inventory=[];
+	//this.inventory=[];
 	this.game.playermodel = this;
 	this.invcounts={};
 }
 
 PlayerModel.prototype = {
+		healPerson : function(person) {
+			
+			// TODO : add more complex logic to determine which
+			// 			herbs can heal which disease ...
+			
+			if (person.hasDisease()) {
+				 
+				if (this.invcounts[this.HERB_A] > 5) {
+					
+					// can heal + use herbs
+					
+					this.invcounts[this.HERB_A]-=5;
+					person.beHealed();
+					
+				} else {
+					
+					// sorry not enough herbs
+				}
+			}
+			
+		},
 		addPlant : function(plantname) {
-			this.inventory.push(plantname);
+			if (this.invcounts[plantname] == undefined)
+				this.invcounts[plantname] = 0;
 			this.invcounts[plantname]+=1;
 		}
 }
@@ -109,6 +132,10 @@ Person.prototype.update = function(ticks) {
 
 Person.prototype.addDefaultDisease = function() {
 	this.addDisease(new Disease(1));
+}	
+
+Person.prototype.hasDisease = function() {
+	return this.diseases.length > 0;
 }	
 
 Person.prototype.addDisease = function(dis) {

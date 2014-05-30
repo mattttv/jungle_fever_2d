@@ -176,7 +176,9 @@ window.onload = function() {
         player.animations.add('attack_up', [12, 8], 5, false);
         player.animations.add('attack_right', [13, 9], 5, false);
         player.animations.add('attack_down', [14, 10], 5, false);
-        player.animations.add('attack_left', [15, 11], 5, false);      
+        player.animations.add('attack_left', [15, 11], 5, false);
+        
+        player.worldEntity = playermodel;
     
 	}    
  

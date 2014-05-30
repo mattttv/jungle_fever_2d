@@ -7,4 +7,4 @@ START_RAIN = false;
 
 RENDER_DEBUG = false;
 
-SHOW_HELP = false;
+SHOW_HELP = true;

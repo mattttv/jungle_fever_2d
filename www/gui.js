@@ -9,8 +9,9 @@ function HUD(game) {
 	this.texts=[];
 	
 	this.lines=['J-U-N-G-L-E-F-E-V-E-R!',
-	            'Collect plants ...',
-	            '... and heal people!!!',
+	            'Collect plants and heal people!',
+	            'Arrow Keys to move',
+	            'X attack, C strave, V dash',
 	            '* * GameJamGraz2014 * *'
 	            ];
 	this.linecounter = 0;
@@ -30,7 +31,8 @@ HUD.prototype = {
 	},
 
 	update: function () {
-		
+		var offsetx = game.camera.view.x,
+			offsety = game.camera.view.y;
 		if (this.show_help) {
 			// Sliding text
 			this.textpos-=2;
@@ -40,7 +42,9 @@ HUD.prototype = {
 			}
 			
 			game.world.remove(this.bmpText);
-			this.bmpText = game.add.bitmapText(this.textpos, 0, 'nokia',
+			this.bmpText = game.add.bitmapText(offsetx + this.textpos, 
+					offsety + 0, 
+					'nokia',
 					this.lines[this.linecounter], 64);
 		} else {
 			if (this.bmpText) {
@@ -57,10 +61,12 @@ HUD.prototype = {
 		// Add in-game texts for people
 		for (p in this.game.worldmodel.people) {
 			var pers = this.game.worldmodel.people[p];
-			var nmbr = game.add.bitmapText(pers.sprite.body.x,
+			var nmbr = game.add.bitmapText(
+					pers.sprite.body.x,
 					pers.sprite.body.y,
 					'nokia',
-					Math.round(pers.hp,0).toString(), 12);
+					Math.round(pers.hp,0).toString()+'/'+Math.round(pers.immunity,0).toString(),
+					12);
 			this.texts.push(nmbr);
 		}
 		
