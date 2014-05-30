@@ -10,22 +10,10 @@ function spawnArea(game, world) {
 
 	spawnPlants(game, world);
 
-    world.sprites['enemies'] = game.add.group();
-    world.sprites['enemies'].enableBody = true;
-    for (i = 0; i < ENEMY_AMOUNT; i++)
-    {
-        var e = world.sprites['enemies'].create(
-                50, 50, 
-                'shooter');
-        e.body.collideWorldBounds = true;
-        e.body.bounce.set(1);
-        
-        e.name="bad guy ";
-        e.id = e.name +  i;
-        e.health = ENEMY_HEALTH;
-        debugPrint("added enemy " + e.id);
-    }
-	
+    initEnemies();
+    
+    var i = 0;
+
 	world.sprites['people'] = game.add.group();
 	world.sprites['people'].enableBody = true;
 	for (var i = 0; i < 5; i++) {
@@ -51,6 +39,7 @@ function spawnArea(game, world) {
 	world.sprites['all'] = new Phaser.Group(game);
 	world.sprites['all'].add(world.sprites['plants']);
 	world.sprites['all'].add(world.sprites['people']);
+    world.sprites['all'].add(world.sprites['enemies']);
 	world.sprites['all'].add(player);
 }
 
@@ -68,6 +57,33 @@ function spawnPlants(game, world) {
         s.plant_tag="gingerblossom";
         s.id = s.plant_tag +  i;
     }	
+}
+
+function initEnemies() {
+    world.sprites['enemies'] = game.add.group();
+    world.sprites['enemies'].enableBody = true;
+    for (var i = 0; i < SHOOTER_AMOUNT; i++)
+    {
+        var e = world.sprites['enemies'].create(
+                100*i, 100*i, 
+                'shooter');
+        e.body.collideWorldBounds = true;
+        e.body.bounce.set(1);
+        
+        //e.name="bad guy ";
+        //e.id = e.name +  i;
+        e.health = SHOOTER_HEALTH;
+        e.name = "bad guy";
+        e.id = this.name + " " + i;
+        
+        //TODO this does not work ... push not defined for undefined ;(
+        eObject = new Enemy("bad guy",i);
+        e.worldEntity = eObject;
+        debugPrint(eObject);
+        eObject.sprite = e;
+        //world.enemies.push(eObject);
+    }
+
 }
 
 function setupPersonsAnim(game) {

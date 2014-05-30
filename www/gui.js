@@ -71,18 +71,20 @@ HUD.prototype = {
 					12);
 			this.texts.push(nmbr);
 		}
-/*
+
+        // Add in-game texts for enemies
 		for (e in this.game.worldmodel.enemies) {
+			debugPrint("in game text enemies");
 			var ene = this.game.worldmodel.enemies[e];
 			var nmbr = game.add.bitmapText(
-					ene.sprite.body.x,
-					ene.sprite.body.y,
+					ene.body.x,
+					ene.body.y + 10,
 					'nokia',
-					Math.round(ene.hp,0).toString()+'/'+Math.round(ene.immunity,0).toString(),
+					Math.round(ene.health,0).toString() + '/'+ SHOOTER_HEALTH.toString(),
 					12);
 			this.texts.push(nmbr);
 		}
-		*/
+		
 		
 		// Add inventory display
 		var nmbr = game.add.bitmapText(

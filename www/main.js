@@ -138,7 +138,6 @@ window.onload = function() {
 	    doUpdates(game);
 
         screen_gui.update();
-	    
 	}
 
 	function render() {
