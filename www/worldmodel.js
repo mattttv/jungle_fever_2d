@@ -258,9 +258,9 @@ RandomActionEmitter.prototype = {
 function Environment(game) {
 	this.game = game;
 	this.next_disease_state = 0;
-	this.DEFAULT_VAL = 1000;
+	this.DEFAULT_VAL = 5000;
 	
-	this.plants_respawn = new RandomActionEmitter(this.DEFAULT_VAL*20);
+	this.plants_respawn = new RandomActionEmitter(this.DEFAULT_VAL*5);
 }
 
 Environment.prototype = {
