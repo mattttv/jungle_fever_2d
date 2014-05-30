@@ -5,6 +5,7 @@ var player;
 var people;
 var cursors;
 var upKey, downKey, leftKey, rightKey;
+var shiftKey;
 
 var plants;
 var cursors;
@@ -103,11 +104,13 @@ window.onload = function() {
 	    player.body.height-=35;
 	    player.body.width-=35;
         
-
+        //define keys
 	    cursors = game.input.keyboard.createCursorKeys();
-
         attackKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
         attackKey.onDown.add(doAttack, this);
+        
+        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
+        
 
         setupFullScreen();
         

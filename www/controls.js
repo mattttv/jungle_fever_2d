@@ -2,24 +2,26 @@
 function doGameController(game, cursors) {
 	var pspeed = 10;
 	var movement_happend = false;
+    var one_direction = player.last;
+    
     if (cursors.left.isDown)
     {
         player.body.velocity.x -= pspeed;        
-        player.last = DIRECTION.LEFT;
+        one_direction = DIRECTION.LEFT;
         movement_happend = true;
     }
     else if (cursors.right.isDown)
     {
 
         player.body.velocity.x +=pspeed;
-        player.last = DIRECTION.RIGHT;
+        one_direction = DIRECTION.RIGHT;
         movement_happend = true;
     }
     
     if (cursors.up.isDown)
     {
         
-        player.last = DIRECTION.UP;
+        one_direction = DIRECTION.UP;
         player.body.velocity.y -=pspeed;
         movement_happend = true;
     }
@@ -27,38 +29,60 @@ function doGameController(game, cursors) {
     {
 
         
-        player.last = DIRECTION.DOWN;
+        one_direction = DIRECTION.DOWN;
         player.body.velocity.y +=pspeed;
         movement_happend = true;
     } 
+    if (!shiftKey.isDown)
+        player.last = one_direction;
     
     
     if (player.animations.currentAnim.isFinished)
    
     {
-        
-        if (cursors.up.isDown)
-        {
-
-            player.animations.play('up');
-
-        }
-        else if(cursors.down.isDown)
-        {
-
-            player.animations.play('down');
-
-        } 
-
-        if (!cursors.up.isDown & !cursors.down.isDown)
+        if(!shiftKey.isDown)
         {    
-            if(cursors.right.isDown)    
-                player.animations.play('right');
+            if (cursors.up.isDown)
+            {
 
-            else if( cursors.left.isDown)
-                player.animations.play('left');
+                player.animations.play('up');
+
+            }
+            else if(cursors.down.isDown)
+            {
+
+                player.animations.play('down');
+
+            } 
+
+            if (!cursors.up.isDown & !cursors.down.isDown)
+            {    
+                if(cursors.right.isDown)    
+                    player.animations.play('right');
+
+                else if( cursors.left.isDown)
+                    player.animations.play('left');
+            }
+        }    
+        else if(cursors.up.isDown || cursors.down.isDown || cursors.left.isDown || cursors.right.isDown ){
+            switch(player.last) {
+                case DIRECTION.LEFT:
+                    player.animations.play('left');
+                    break;
+                case DIRECTION.RIGHT:
+                    player.animations.play('right');
+                    break;
+                case DIRECTION.UP:
+                    player.animations.play('up');
+                    break;
+                case DIRECTION.DOWN:
+                    player.animations.play('down');
+                    break;                
+                default:
+                    player.animations.play('down');
+            }
         }
-
+        
 
         player.attack_happened = false;
         lastanim_blocked = false;
