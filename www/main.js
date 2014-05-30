@@ -14,6 +14,10 @@ var game;
 var world;
 var playermodel;
 
+var map;
+var layer;
+
+
 /*
  * Main
  */
@@ -30,16 +34,12 @@ window.onload = function() {
 	playermodel = new PlayerModel();
 	
 	function preload() {
-<<<<<<< HEAD
-<<<<<<< HEAD
+        
+        game.load.tilemap('map', 'resources/firstGround.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('tiles', 'resources/werfeg.jpg');
+        
 
-        game.load.image('drvoodo', 'resources/pineapple.png');
-=======
         game.load.image('people', 'resources/pineapple.png');
->>>>>>> FETCH_HEAD
-=======
-        game.load.image('people', 'resources/pineapple.png');
->>>>>>> FETCH_HEAD
         game.load.image('baddie', 'resources/mushroom.png');
         game.load.spritesheet('girl', 'resources/0000_asdzug.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
@@ -49,15 +49,19 @@ window.onload = function() {
 
 
     function create () {
-
+        
+        // game.stage.backgroundColor = '#4f5d3e';
+        
+        map = game.add.tilemap('map');
+        map.addTilesetImage();
+        layer = map.createLayer('ground');
+        layer.resizeWorld();
+            
         setup_player(game, player);
         music = game.add.audio('village',1,true);
 
         music.play('',0,1,true);
         
-        game.stage.backgroundColor = '#462';
-            
-
 	    // setUpDemoPlants(game);
 	    spawnArea(game, world);
 	    
