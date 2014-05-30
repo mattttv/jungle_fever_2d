@@ -18,6 +18,7 @@ function CurrentArea(game) {
 }
 
 CurrentArea.prototype.doUpdates = function(game) {
+	//TODO [mv] we should use event handling here
 	var ticks = game.time.now - this.last_time ;
 	this.last_time = game.time.now;
 	
@@ -275,7 +276,7 @@ Environment.prototype = {
 		this.next_disease_state-=ticks;
 		
 		if (this.plants_respawn.update(ticks)) {
-			console.log('respawn plants');
+			//debugPrint('respawn plants');
 			initPlants(game, world); // call works only with globals - WTF
 		}
 		

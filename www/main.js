@@ -8,8 +8,8 @@ var world;
 var playermodel;
 var gui;
 var map;
-var layer;
-var cursors;
+
+//var layer;
 //var people;
 
 //var shiftKey;
@@ -71,12 +71,17 @@ window.onload = function() {
 	    spawnArea(game, world);
 
         gui.create();
+
+
 	}
 
 	function update() {
-	    doGameController(game, cursors);
+        doGameController(game, cursors);
+        
         level.update(player);
-	    doUpdates(game);
+        
+        doUpdates(game); //what is called here? worldmodel or controls?
+
         gui.update();
 	}
 
@@ -92,5 +97,7 @@ window.onload = function() {
  	    }
 
 	}
+
+ 
 };
 

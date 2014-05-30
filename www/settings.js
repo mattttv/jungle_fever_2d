@@ -14,6 +14,9 @@ var DEBUGCAMERA = false;
 
 var SHOW_HELP = false;
 
+//time between health-updates
+var TEXT_DELAY = 1000;
+
 var SHOOTER_AMOUNT = 5;
 
 //ENEMY SETTINGS

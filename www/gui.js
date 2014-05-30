@@ -4,16 +4,19 @@ function GUI(game) {
 	this.bmpText;	
 	this.textpos=0;
 	this.show_help = SHOW_HELP;
+	this.lastTimeGui = 0; //getTime darf hier nicht aufgerufen werden
+	this.currentTimeGui = 0;
+	this.textDelay = TEXT_DELAY;
 
 	// keep tracks of textparts on the screen
 	this.texts=[];
 	
 	this.lines=['J-U-N-G-L-E-F-E-V-E-R!',
-	            'Collect plants and heal people!',
-	            'Arrow Keys to move',
-	            'X attack, C strave, V dash',
-	            '* * GameJamGraz2014 * *'
-	            ];
+	'Collect plants and heal people!',
+	'Arrow Keys to move',
+	'X attack, C strave, V dash',
+	'* * GameJamGraz2014 * *'
+	];
 	this.linecounter = 0;
 }
 
@@ -21,9 +24,9 @@ GUI.prototype = {
 
 	preload: function () {
 		// Load a bitmap font
-        this.font = this.game.load.bitmapFont('nokia', 
-        		'resources/fonts/nokia.png', 
-        		'resources/fonts/nokia.xml');
+		this.font = this.game.load.bitmapFont('nokia', 
+			'resources/fonts/nokia.png', 
+			'resources/fonts/nokia.xml');
 	},
 
 	create: function () {
@@ -32,8 +35,9 @@ GUI.prototype = {
 
 	update: function () {
 		var offsetx = game.camera.view.x,
-			offsety = game.camera.view.y;
+		offsety = game.camera.view.y;
 		
+
 		if (this.show_help) {
 			// Sliding help text
 			this.textpos-=3;
@@ -43,61 +47,73 @@ GUI.prototype = {
 			}
 			game.world.remove(this.bmpText);
 			this.bmpText = game.add.bitmapText(
-					this.textpos, 
-					game.camera.view.height - 100, 
-					'nokia',
-					this.lines[this.linecounter], 64);
-	        this.bmpText.fixedToCamera = true;
+				this.textpos, 
+				game.camera.view.height - 100, 
+				'nokia',
+				this.lines[this.linecounter], 64);
+			this.bmpText.fixedToCamera = true;
 		} else {
 			if (this.bmpText) {
 				game.world.remove(this.bmpText);
 				delete this.bmpText;
 			}
 		}
-		
+		this.currentTimeGui = getTime();
+
+		if ((getTime() - this.lastTimeGui) >= this.textDelay) {
+			this.lastTimeGui = getTime();
+
+			debugPrint(this.lastTimeGui);
+			
+    //this.lastTimeGui = getTime();}
+
+
 		// Clean In-Game Texts
 		for(var t in this.texts) {
 			game.world.remove(this.texts[t]);
 		}
+
+
 		
 		// Add in-game texts for people
 		for (p in this.game.worldmodel.people) {
 			var pers = this.game.worldmodel.people[p];
 			var nmbr = game.add.bitmapText(
-					pers.sprite.body.x,
-					pers.sprite.body.y,
-					'nokia',
-					Math.round(pers.hp,0).toString()+'/'+Math.round(pers.immunity,0).toString(),
-					12);
+				pers.sprite.body.x,
+				pers.sprite.body.y,
+				'nokia',
+				Math.round(pers.hp,0).toString()+'/'+Math.round(pers.immunity,0).toString(),
+				12);
 			this.texts.push(nmbr);
 		}
 
         // Add in-game texts for enemies
         //debugPrint(this.game.worldmodel.enemies);
-		for (var i = 0; i < world.sprites['enemies'].length; i++) {
-			var ene = world.sprites['enemies'].getAt(i);
-			if (ene.health > 0) {
-				var nmbr = game.add.bitmapText(
-					ene.x + ene.width/2,
-					ene.y + ene.height/10,
-					'nokia',
-					Math.round(ene.health,0).toString() + '/'+ SHOOTER_HEALTH.toString(),
-					12);
+        for (var i = 0; i < world.sprites['enemies'].length; i++) {
+        	var ene = world.sprites['enemies'].getAt(i);
+        	if (ene.health > 0) {
+        		var nmbr = game.add.bitmapText(
+        			ene.x + ene.width/2,
+        			ene.y + ene.height/10,
+        			'nokia',
+        			Math.round(ene.health,0).toString() + '/'+ SHOOTER_HEALTH.toString(),
+        			12);
 
-			this.texts.push(nmbr);
-			}
-			
-		}
-		
-		
+        		this.texts.push(nmbr);
+        	}
+
+        }
+
+
 		// Add inventory display
 		var nmbr = game.add.bitmapText(
-				offsetx + 10,
-				offsety + 10,
-				'nokia',
-				'Plants: ' + game.playermodel.getInventoryCount().toString(),
-				24);
+			offsetx + 10,
+			offsety + 10,
+			'nokia',
+			'Plants: ' + game.playermodel.getInventoryCount().toString(),
+			24);
 		this.texts.push(nmbr);
 	}
+}
 };
 

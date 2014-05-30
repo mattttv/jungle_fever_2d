@@ -21,7 +21,7 @@ function doGameController(game, cursors) {
             one_direction = DIRECTION.RIGHT;
             movement_happend = true;
         }
-        
+
         if (cursors.up.isDown)
         {
 
@@ -40,7 +40,7 @@ function doGameController(game, cursors) {
             player.last = one_direction;
         }
     }
-    
+
     if (player.animations.currentAnim.isFinished)
     {
         if(!shiftKey.isDown)
@@ -166,7 +166,7 @@ function doDash() {
         player.animations.play('attack_down');
     }
     
-    debugPrint(dust);
+    //debugPrint(dust);
     dust.start(true, 300, 30, 50);
 }
 /****

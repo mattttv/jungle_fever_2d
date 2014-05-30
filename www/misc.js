@@ -16,3 +16,7 @@ function debugPrint(message) {
   	console.log(message);
   }
 };
+
+function getTime() {
+  return game.time.now
+}
