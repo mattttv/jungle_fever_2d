@@ -71,6 +71,18 @@ HUD.prototype = {
 					12);
 			this.texts.push(nmbr);
 		}
+/*
+		for (e in this.game.worldmodel.enemies) {
+			var ene = this.game.worldmodel.enemies[e];
+			var nmbr = game.add.bitmapText(
+					ene.sprite.body.x,
+					ene.sprite.body.y,
+					'nokia',
+					Math.round(ene.hp,0).toString()+'/'+Math.round(ene.immunity,0).toString(),
+					12);
+			this.texts.push(nmbr);
+		}
+		*/
 		
 		// Add inventory display
 		var nmbr = game.add.bitmapText(

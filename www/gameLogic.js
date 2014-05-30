@@ -1,27 +1,17 @@
 
-var markerRect;
 function doAttackPlayerLogic() {
   //TODO del
-  debugPrint("attack log");
+  //debugPrint("attack logi");
   
   player.rangex = 70;
   player.rangey = 60;
   player.damage = 10;
-  var thickness = 0;
   
-  if (DEBUGOUTPUT) {
-  	thickness = 2;
-  }
-
   var markerX;
   var markerY;
   var markerW; 
   var markerH; 
 
-  marker = game.add.graphics();
-  marker.lineStyle(thickness, 0x000000, 1);
-
-  //drawRect(100, 100, 50, 50); // (x, y, w, h) 
   switch(player.last) {
   	case DIRECTION.RIGHT: 
     markerX = player.x + player.width/2;
@@ -48,19 +38,7 @@ function doAttackPlayerLogic() {
     markerH = player.rangex;
     break;
   }
-  marker.drawRect(
-      markerX, //x
-      markerY,
-      markerW,
-      markerH); //h
 
-  /*markerRect = Phaser.Rectangle(
-    markerX,
-    markerY, 
-    markerW, 
-    markerH);*/
-  
-  //debugPrint(markerRect.centerX);
   doAttackOverlapWithPlayer(
     markerX,
     markerY, 
@@ -69,33 +47,21 @@ function doAttackPlayerLogic() {
 }
 
 function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
-  var sprites = world.sprites['sprites'];
-  debugPrint("number of sprites: " + world.sprites['enemy'].length);
-  var plantX = 0;
-  var plantY = 0;
-  debugPrint("hitbox: markerX: " + markerX + 
-    " markerY " + markerY +
-    " markerW " + markerW +
-    " markerH " + markerH);
-  for (var i = 0; i < 15; i++)
-    {
-      plantX = world.sprites['enemy'].getAt(i).x;
-      plantY = world.sprites['enemy'].getAt(i).y;
-      debugPrint(world.sprites['enemy'].getAt(i).id+ " plantx: "+plantX + 
-        " planty: " + plantY);
-      if (plantX >= markerX && 
-         plantX <= markerX + markerW &&
-         plantY >= markerY &&
-         plantY <= markerY + markerH) {
-        debugPrint("plant in range "+world.sprites['enemy'].getAt(i).id)
-      }
-    }  
-  /*
-  game.physics.arcade.overlap(marker, world.sprites['people'], function(o1,o2) {
-      debugPrint("player hits plant");
-      o2.worldEntity.hp -= (player.damage);
+  var hitbox = game.add.sprite(markerX, markerY,'empty');
+  game.physics.enable(hitbox, Phaser.Physics.ARCADE);
+  hitbox.enableBody = true;
+  hitbox.body.x = markerX;
+  hitbox.body.y = markerY;
+  hitbox.height = markerH;
+  hitbox.width = markerW;
+
+
+  game.physics.arcade.overlap(hitbox, world.sprites['enemies'], function(hitbox,enemy) {
+      enemy.damage(player.damage);
+      debugPrint("player hits " + enemy.id + " for " + player.damage + " points");
+      debugPrint("HP: " + enemy.health + "/" + (enemy.health + player.damage));
     }
   );  
-  //marker.destroy();
-  */
+
+  hitbox.destroy();
 }
