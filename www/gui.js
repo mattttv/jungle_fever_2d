@@ -73,16 +73,20 @@ HUD.prototype = {
 		}
 
         // Add in-game texts for enemies
-		for (e in this.game.worldmodel.enemies) {
-			debugPrint("in game text enemies");
-			var ene = this.game.worldmodel.enemies[e];
-			var nmbr = game.add.bitmapText(
-					ene.body.x,
-					ene.body.y + 10,
+        //debugPrint(this.game.worldmodel.enemies);
+		for (var i = 0; i < world.sprites['enemies'].length; i++) {
+			var ene = world.sprites['enemies'].getAt(i);
+			if (ene.health > 0) {
+				var nmbr = game.add.bitmapText(
+					ene.x + ene.width/2,
+					ene.y + ene.height/10,
 					'nokia',
 					Math.round(ene.health,0).toString() + '/'+ SHOOTER_HEALTH.toString(),
 					12);
+
 			this.texts.push(nmbr);
+			}
+			
 		}
 		
 		

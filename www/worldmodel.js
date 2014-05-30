@@ -13,7 +13,7 @@ function CurrentArea(game) {
 	//this.people=[];
 	this.sprites={};
 	this.people=[];
-	
+	this.enemies=[];
 	this.enivronment = new Environment(game);
 }
 
@@ -49,6 +49,7 @@ CurrentArea.prototype.init = function(game) {
 	this.last_time = game.time.now;
 	world.sprites['plants'] = game.add.group();
 	world.sprites['people'] = game.add.group();
+	world.sprites['enemies'] = game.add.group();
 }
 
 //----------------------------------------------------------------------------

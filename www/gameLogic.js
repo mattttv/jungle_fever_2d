@@ -70,6 +70,8 @@ function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
       debugPrint("HP: " + enemy.health + "/" + (enemy.health + player.damage));
     }
   );  
-  if (!watchRange)
+  if (!watchRange){
     hitbox.destroy();
+  }
+    
 }

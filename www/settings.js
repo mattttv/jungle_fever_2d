@@ -13,7 +13,7 @@ var DEBUGCAMERA = false;
 
 var SHOW_HELP = false;
 
-var SHOOTER_AMOUNT = 2;
+var SHOOTER_AMOUNT = 5;
 
 //ENEMY SETTINGS
 var SHOOTER_HEALTH = 100;
