@@ -21,19 +21,20 @@ function spawnArea(game, world) {
         s.id = s.plant_tag +  i;
     }
 
-    world.sprites['enemy'] = game.add.group();
-    world.sprites['enemy'].enableBody = true;
+    world.sprites['enemies'] = game.add.group();
+    world.sprites['enemies'].enableBody = true;
     for (i = 0; i < ENEMY_AMOUNT; i++)
     {
-        debugPrint("added enemy");
-        var s = world.sprites['enemy'].create(
+        var e = world.sprites['enemies'].create(
                 50, 50, 
-                'enemy');
-        s.body.collideWorldBounds = true;
-        s.body.bounce.set(1);
+                'enemies');
+        e.body.collideWorldBounds = true;
+        e.body.bounce.set(1);
         
-        s.name="enemy";
-        s.id = s.name +  i;
+        e.name="bad guy ";
+        e.id = e.name +  i;
+        e.health = ENEMY_HEALTH;
+        debugPrint("added enemy " + e.id);
     }
 	
 	world.sprites['people'] = game.add.group();
