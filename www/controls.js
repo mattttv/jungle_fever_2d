@@ -4,59 +4,74 @@ function doGameController(game, cursors) {
 	var movement_happend = false;
     if (cursors.left.isDown)
     {
-        player.body.velocity.x -=pspeed;
-        player.animations.play('left');
-        player.last = 0;
+        player.body.velocity.x -= pspeed;        
+        player.last = DIRECTION.LEFT;
         movement_happend = true;
     }
     else if (cursors.right.isDown)
     {
+
         player.body.velocity.x +=pspeed;
-        player.animations.play('right');
-        player.last = 1;
+        player.last = DIRECTION.RIGHT;
         movement_happend = true;
     }
     
     if (cursors.up.isDown)
     {
+        
+        player.last = DIRECTION.UP;
         player.body.velocity.y -=pspeed;
-        player.animations.play('up');
-        player.last = 2;
         movement_happend = true;
     }
-    else if (cursors.down.isDown)
+    else if(cursors.down.isDown)
     {
+
+        
+        player.last = DIRECTION.DOWN;
         player.body.velocity.y +=pspeed;
-        player.animations.play('down');
-        player.last = 3;
         movement_happend = true;
     } 
     
-    /*if (!movement_happend) {
-    	switch(player.last) {
-        case DIRECTION.LEFT:
-            player.animations.play('idleleft');
-            break;
-        case DIRECTION.RIGHT:
-            player.animations.play('idleright');
-            break;
-        case DIRECTION.UP:
-            player.animations.play('idleup');
-            break;
-        case DIRECTION.DOWN:
-            player.animations.play('idledown');
-            break;                
-        default:
-            player.animations.play('idledown');
+    
+    if (player.animations.currentAnim.isFinished)
+   
+    {
+        
+        if (cursors.up.isDown)
+        {
+
+            player.animations.play('up');
+
         }
-    }*/
+        else if(cursors.down.isDown)
+        {
+
+            player.animations.play('down');
+
+        } 
+
+        if (!cursors.up.isDown & !cursors.down.isDown)
+        {    
+            if(cursors.right.isDown)    
+                player.animations.play('right');
+
+            else if( cursors.left.isDown)
+                player.animations.play('left');
+        }
+
+
+        player.attack_happened = false;
+        lastanim_blocked = false;
+    }
+
 }
         
 function doAttack() {
     debugPrint("attack");
     doAttackPlayerLogic();
+    player.attack_happened = true;
     switch(player.last) {
-        case DIRECTION.LEFT:
+     case DIRECTION.LEFT:
             player.animations.play('attack_left');
             break;
         case DIRECTION.RIGHT:
@@ -70,7 +85,7 @@ function doAttack() {
             break;                
         default:
             player.animations.play('attack_down');
-        }
+    }
 }
 
 /****
