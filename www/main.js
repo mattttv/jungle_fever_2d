@@ -15,8 +15,6 @@ var level;
 var world;
 var playermodel;
 
-var debugOutput = true;
-var debugCamera = false;
 var emitter;
 var screen_gui;
 
@@ -146,7 +144,7 @@ window.onload = function() {
 
 	function render() {
 
-        if (debugCamera) {
+        if (DEBUGCAMERA) {
           game.debug.cameraInfo(game.camera, 32, 32);
           game.debug.spriteCoords(player, 32, 200);
         }

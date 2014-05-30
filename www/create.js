@@ -17,7 +17,10 @@ function spawnArea(game, world) {
         s.body.collideWorldBounds = true;
         s.body.bounce.set(1);
         
-        s.plant_tag="shroom";
+        s.plant_tag="shroom ";
+        s.name = "shroom ";
+        s.id = s.name +  i;
+        //debugPrint(s.plant_tag + s.id + " created");
     }
 	
 	world.sprites['people'] = game.add.group();
