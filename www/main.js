@@ -5,6 +5,8 @@ var player;
 var people;
 var cursors;
 var upKey, downKey, leftKey, rightKey;
+var shiftKey;
+var dashKey;
 
 var plants;
 var cursors;
@@ -36,13 +38,8 @@ window.onload = function() {
 			{ preload: preload, create: create, update: update, render: render });
 	
 	world = new CurrentArea(game);
-	playermodel = new PlayerModel();
+	playermodel = new PlayerModel(game);
 	screen_gui = new HUD(game);
-
-	// Attach the "worldmodel" to the game (for easy retrieval).
-	// (game.world is the internal phaser.io world, this one is for the
-	// 'behind the scenes' model.
-    game.worldmodel = world;
 
 	function preload() {
         
@@ -57,6 +54,8 @@ window.onload = function() {
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
         game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
+        
+        game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
         screen_gui.preload();
 	}
@@ -103,11 +102,15 @@ window.onload = function() {
 	    player.body.height-=35;
 	    player.body.width-=35;
         
-
+        //define keys
 	    cursors = game.input.keyboard.createCursorKeys();
-
         attackKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
         attackKey.onDown.add(doAttack, this);
+        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
+        shiftKey.onDown.add(doDash, this);
+        
+        shiftKey = game.input.keyboard.addKey(Phaser.Keyboard.C);
+        
 
         setupFullScreen();
         
@@ -126,6 +129,8 @@ window.onload = function() {
 
         emitter.minRotation = 0;
         emitter.maxRotation = 0;
+        
+        player.animations.play('down');
 
         if (START_RAIN) {
         	emitter.start(false, 1600, 5, 0);
