@@ -1,10 +1,14 @@
 
-START_MUSIC = false;
+var START_MUSIC = false;
 
-GAME_SIZE = [800,600];
+var GAME_SIZE = [800,600];
 
-START_RAIN = false;
+var START_RAIN = false;
 
-RENDER_DEBUG = false;
+var RENDER_DEBUG = false;
+
+var DEBUGOUTPUT = true;
+
+var DEBUGCAMERA = true;
 
 SHOW_HELP = true;

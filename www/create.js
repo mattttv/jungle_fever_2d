@@ -18,6 +18,7 @@ function spawnArea(game, world) {
         s.body.bounce.set(1);
         
         s.plant_tag="gingerblossom";
+        s.id = s.plant_tag +  i;
     }
 	
 	world.sprites['people'] = game.add.group();
