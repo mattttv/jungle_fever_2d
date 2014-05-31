@@ -73,6 +73,11 @@ function initEnemies() {
         e.body.collideWorldBounds = true;
         e.body.bounce.set(1);
         e.body.immovable = true;
+        e.body.offset.x=20;
+        e.body.offset.y=5;
+        e.body.height-=45;
+        e.body.width-=35;
+        e.anchor.setTo(0.5, 0.5);
         
         
         e.animations.add('shoot', [1, 0], 4, true);
@@ -125,7 +130,7 @@ function updateShooters() {
             game.physics.arcade.collide(player, ene);
             if (this.game.physics.arcade.distanceBetween(ene, player) < 300)
             {
-                //debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
+                debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
                 if (game.time.now > ene.nextFire && world.enemyBullets.countDead() > 0 && ene.alive)
                 {
                     //debugPrint("Shoot Bullet");

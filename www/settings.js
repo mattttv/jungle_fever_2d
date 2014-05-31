@@ -19,7 +19,7 @@ var DEBUG_LAYER = false;
 //time between health-updates
 var TEXT_DELAY = 1000;
 
-var SHOOTER_AMOUNT = 5;
+var SHOOTER_AMOUNT = 8;
 
 //ENEMY SETTINGS
 var SHOOTER_HEALTH = 100;
