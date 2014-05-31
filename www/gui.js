@@ -78,13 +78,23 @@ GUI.prototype = {
 		// Add in-game texts for people
 		for (p in this.game.worldmodel.people) {
 			var pers = this.game.worldmodel.people[p];
-			var nmbr = game.add.bitmapText(
-				pers.sprite.body.x,
-				pers.sprite.body.y,
-				'nokia',
-				Math.round(pers.hp,0).toString()+'/'+Math.round(pers.immunity,0).toString(),
-				12);
-			this.texts.push(nmbr);
+			var playertext;
+			// playertext = Math.round(pers.hp,0).toString();
+			
+			if (pers.hasDisease() && ! pers.isDead()) {
+				playertext = "Help.. ";
+				if (pers.hp < 40) playertext += 'o_O';
+				else if (pers.hp < 60) playertext += ':o';
+				else if (pers.hp < 80) playertext += ':(';
+				else playertext += ':|';
+				var nmbr = game.add.bitmapText(
+					pers.sprite.body.x,
+					pers.sprite.body.y,
+					'nokia',
+					playertext,
+					12);
+				this.texts.push(nmbr);
+			}
 		}
 
         // Add in-game texts for enemies
