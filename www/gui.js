@@ -1,9 +1,10 @@
 function GUI(game) {
-	this.game = game;	
+	this.game = game;
+	this.game.gui = this;
 	this.font;
 	this.bmpText;	
 	this.textpos=0;
-	this.show_help = SHOW_HELP;
+	this.show_help;
 	this.lastTimeGui = 0; //getTime darf hier nicht aufgerufen werden
 	this.currentTimeGui = 0;
 	this.textDelay = TEXT_DELAY;
@@ -30,19 +31,16 @@ GUI.prototype = {
 	},
 
 	create: function () {
-		
+		this.show_help = SHOW_HELP;
 	},
 
 	update: function () {
-		var offsetx = game.camera.view.x,
-		offsety = game.camera.view.y;
 		
-
 		if (this.show_help) {
 			// Sliding help text
 			this.textpos-=3;
 			if(this.textpos< -600) {
-				this.textpos = 400;
+				this.textpos = game.camera.width;
 				this.linecounter = (this.linecounter+1) % this.lines.length;
 			}
 			game.world.remove(this.bmpText);
@@ -62,69 +60,61 @@ GUI.prototype = {
 
 		if ((getTime() - this.lastTimeGui) >= this.textDelay) {
 			this.lastTimeGui = getTime();
-
-			debugPrint(this.lastTimeGui);
 			
-    //this.lastTimeGui = getTime();}
-
-
-		// Clean In-Game Texts
-		for(var t in this.texts) {
-			game.world.remove(this.texts[t]);
-		}
-
-
-		
-		// Add in-game texts for people
-		for (p in this.game.worldmodel.people) {
-			var pers = this.game.worldmodel.people[p];
-			var playertext;
-			// playertext = Math.round(pers.hp,0).toString();
-			
-			if (pers.hasDisease() && ! pers.isDead()) {
-				playertext = "Help.. ";
-				if (pers.hp < 40) playertext += 'o_O';
-				else if (pers.hp < 60) playertext += ':o';
-				else if (pers.hp < 80) playertext += ':(';
-				else playertext += ':|';
-				var nmbr = game.add.bitmapText(
-					pers.sprite.body.x,
-					pers.sprite.body.y,
-					'nokia',
-					playertext,
-					12);
-				this.texts.push(nmbr);
+			// Clean In-Game Texts
+			for(var t in this.texts) {
+				game.world.remove(this.texts[t]);
 			}
+
+			// Add in-game texts for people
+			for (p in this.game.worldmodel.people) {
+				var pers = this.game.worldmodel.people[p];
+				var playertext;
+				// playertext = Math.round(pers.hp,0).toString();
+				
+				if (pers.hasDisease() && ! pers.isDead()) {
+					playertext = "Help.. ";
+					if (pers.hp < 40) playertext += 'o_O';
+					else if (pers.hp < 60) playertext += ':o';
+					else if (pers.hp < 80) playertext += ':(';
+					else playertext += ':|';
+					var nmbr = game.add.bitmapText(
+						pers.sprite.body.x,
+						pers.sprite.body.y,
+						'nokia',
+						playertext,
+						12);
+					this.texts.push(nmbr);
+				}
+			}
+
+	        // Add in-game texts for enemies
+	        //debugPrint(this.game.worldmodel.enemies);
+	        for (var i = 0; i < world.sprites['enemies'].length; i++) {
+	        	var ene = world.sprites['enemies'].getAt(i);
+	        	if (ene.health > 0) {
+	        		var nmbr = game.add.bitmapText(
+	        			ene.x + ene.width/2,
+	        			ene.y + ene.height/10,
+	        			'nokia',
+	        			Math.round(ene.health,0).toString() + '/'+ SHOOTER_HEALTH.toString(),
+	        			12);
+	
+	        		this.texts.push(nmbr);
+	        	}
+	        }
+
+
+			// Add inventory display
+			var nmbr = game.add.bitmapText(
+				10,
+				10,
+				'nokia',
+				'Plants: ' + game.playermodel.getInventoryCount().toString(),
+				24);
+			nmbr.fixedToCamera = true;
+			this.texts.push(nmbr);
 		}
-
-        // Add in-game texts for enemies
-        //debugPrint(this.game.worldmodel.enemies);
-        for (var i = 0; i < world.sprites['enemies'].length; i++) {
-        	var ene = world.sprites['enemies'].getAt(i);
-        	if (ene.health > 0) {
-        		var nmbr = game.add.bitmapText(
-        			ene.x + ene.width/2,
-        			ene.y + ene.height/10,
-        			'nokia',
-        			Math.round(ene.health,0).toString() + '/'+ SHOOTER_HEALTH.toString(),
-        			12);
-
-        		this.texts.push(nmbr);
-        	}
-
-        }
-
-
-		// Add inventory display
-		var nmbr = game.add.bitmapText(
-			10,
-			10,
-			'nokia',
-			'Plants: ' + game.playermodel.getInventoryCount().toString(),
-			24);
-		nmbr.fixedToCamera = true;
-		this.texts.push(nmbr);
 	}
-}
 };
 

@@ -90,4 +90,10 @@ function setupKeys () {
             
     dashKey = game.input.keyboard.addKey(Phaser.Keyboard.V);
     dashKey.onDown.add(doDash, this);
+    
+    helpKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
+    helpKey.onDown.add(function() {
+    	if(game.gui!=undefined) game.gui.show_help^=1;}, this);
+    
+    
 }   
