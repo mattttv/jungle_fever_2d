@@ -74,6 +74,7 @@ GUI.prototype = {
 				
 				if (pers.hasDisease() && ! pers.isDead()) {
 					playertext = "Help.. ";
+					playertext = pers.diseases[0].name + ' ';
 					if (pers.hp < 40) playertext += 'o_O';
 					else if (pers.hp < 60) playertext += ':o';
 					else if (pers.hp < 80) playertext += ':(';
@@ -106,11 +107,16 @@ GUI.prototype = {
 
 
 			// Add inventory display
+	        var invstring = 'Plants: ' + game.playermodel.getInventoryCount().toString();
+	        var invstring = '';
+	        for (var pname in playermodel.invcounts) {
+	        	invstring += pname+':'+playermodel.invcounts[pname]+ ' '; 
+	        }
 			var nmbr = game.add.bitmapText(
 				10,
 				10,
 				'nokia',
-				'Plants: ' + game.playermodel.getInventoryCount().toString(),
+				invstring,
 				24);
 			nmbr.fixedToCamera = true;
 			this.texts.push(nmbr);

@@ -37,9 +37,9 @@ function initPlants(game, world) {
 //	setPlantSource(world, 990, 300, "gingerblossom");
 //	setPlantSource(world, 990, 300, "gingerblossom");
 //	setPlantSource(world, 560, 1300, "gingerblossom");
-	setPlantSource(world, 700, 150, "mandrake");
-	setPlantSource(world, 750, 160, "mandrake");
-	setPlantSource(world, 720, 130, "mandrake");
+	setPlantSource(world, 700, 150, plantMap[2]);
+	setPlantSource(world, 750, 160, plantMap[2]);
+	setPlantSource(world, 720, 130, plantMap[1]);
 //	setPlantSource(world, 1050, 1200, "cheesecake");
 	
 }

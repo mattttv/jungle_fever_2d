@@ -2,8 +2,12 @@
  * World model of plants
  */
 
+
+// Available of plant names
+var plantMap = ["gingerblossom", "mandrake", "gingerroot"]
+
 function PlantSource() {
-	this.tag_name="gingerblossom";
+	this.tag_name=plantMap[0];
 	this.position={x:500, y:500};
 	this.spritename = 'pltsrc2';
 	this.spawnvar = 150; // variance of distribution
@@ -15,11 +19,10 @@ function PlantSource() {
  * Factory method to create and set a new plantsource on the map.
  */
 setPlantSource = function(world, x, y, typename, options) {
-	var spritemapping = {
-			'gingerblossom':'pltsrc1',
-			'mandrake':'pltsrc2',
-			'cheesecake':'pltsrc3',
-	}
+	var spritemapping = {}
+	spritemapping[plantMap[0]] = plantMap[0];
+	spritemapping[plantMap[1]] = plantMap[1];
+	spritemapping[plantMap[2]] = plantMap[2];
 	
 	var psrc = new PlantSource();
 	
