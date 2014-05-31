@@ -15,25 +15,25 @@ function doAttackPlayerLogic() {
   switch(player.last) {
   	case DIRECTION.RIGHT: 
     markerX = player.x + player.width/2;
-    markerY = player.y + player.height/2;
+    markerY = player.y;// + player.height/2;
     markerW = player.rangex;
     markerH = player.rangey;
   	break;
     case DIRECTION.LEFT: 
-    markerX = player.x - player.width/2;
-    markerY = player.y + player.height/2;
+    markerX = player.x - 1.5*player.width;
+    markerY = player.y;// + player.height/2;
     markerW = player.rangex;
     markerH = player.rangey;
     break;
     case DIRECTION.DOWN: 
-    markerX = player.x;
-    markerY = player.y + player.height;
+    markerX = player.x - player.width/2;
+    markerY = player.y + player.height/2;
     markerW = player.rangey;
     markerH = player.rangex;
     break;
     case DIRECTION.UP: 
-    markerX = player.x;
-    markerY = player.y - player.height/2 + 25;
+    markerX = player.x - player.width/2;
+    markerY = player.y - player.height/2;
     markerW = player.rangey;
     markerH = player.rangex;
     break;

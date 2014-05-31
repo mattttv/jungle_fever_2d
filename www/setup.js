@@ -80,6 +80,7 @@ function setupPhysics() {
     player.body.offset.y=30;
     player.body.height-=45;
     player.body.width-=35;
+    player.anchor.setTo(0.5, 0.5);
 }
 
 function setupFullScreen() {

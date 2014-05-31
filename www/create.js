@@ -82,6 +82,8 @@ function initEnemies() {
         e.name = "bad guy";
         e.id = e.name + " " + i;
         
+        e.nextFire = 0;
+        
             /* not necessary?
         var eObject = new Enemy("bad guy",i);
         e.worldEntity = eObject;
@@ -90,6 +92,54 @@ function initEnemies() {
         world.enemies.push(eObject);
         */
     }
+    //init enemy bullets
+    
+    //  The enemies bullet group
+    world.enemyBullets = game.add.group();
+    world.enemyBullets.enableBody = true;
+    world.enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
+    world.enemyBullets.createMultiple(100, 'bullet');
+    world.enemyBullets.setAll('anchor.x', 0.5);
+    world.enemyBullets.setAll('anchor.y', 0.5);
+    world.enemyBullets.setAll('outOfBoundsKill', true);
+    world.enemyBullets.setAll('checkWorldBounds', true);
+    
+    //  Now using the power of callAll we can add the same animation to all coins in the group:
+    world.enemyBullets.callAll('animations.add', 'animations', 'spin', [0, 1], 10, true);
+
+    //  And play them
+    world.enemyBullets.callAll('animations.play', 'animations', 'spin');
+    
+    
+
+}
+
+function updateShooters() {
+
+    var fireRate = 1200;
+    
+    for (var i = 0; i < world.sprites['enemies'].length; i++) {
+        	var ene = world.sprites['enemies'].getAt(i);
+            if (this.game.physics.arcade.distanceBetween(ene, player) < 300)
+            {
+                debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
+                if (game.time.now > ene.nextFire && world.enemyBullets.countDead() > 0)
+                {
+                    debugPrint("Shoot Bullet");
+                    ene.nextFire = game.time.now + fireRate;
+
+                    var bullet = world.enemyBullets.getFirstDead();
+
+                    bullet.reset(ene.body.x + ene.body.width/2, ene.body.y+ene.body.height/2);
+
+                    bullet.rotation = this.game.physics.arcade.moveToObject(bullet, player, 500);
+                }
+            }	
+
+        }
+    
+    
+    
 
 }
 

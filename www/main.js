@@ -56,6 +56,7 @@ window.onload = function() {
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
         game.load.spritesheet('shooter', 'resources/schiessblume1.png', 128, 100);
+        game.load.spritesheet('bullet', 'resources/schiessblume_kugel1.png', 64, 117);
 
 
         // plant-sources - plant stuff to pick up
@@ -104,7 +105,8 @@ window.onload = function() {
         level.update(player);
         
         doUpdates(game); //what is called here? worldmodel or controls?
-
+        
+        updateShooters();
         gui.update();
 	}
 
