@@ -1,0 +1,17 @@
+body {
+	width: 900;
+	margin: auto;
+	background-color: brown;
+}
+
+h1 {
+	font-family: Helvetica;
+
+}
+
+#jungleFever {
+	background-color: #999999;
+	margin: auto;
+	width: 800px;
+	height: 600px;
+}

@@ -130,7 +130,7 @@ function updateShooters() {
             game.physics.arcade.collide(player, ene);
             if (this.game.physics.arcade.distanceBetween(ene, player) < 300)
             {
-                debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
+                // debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
                 if (game.time.now > ene.nextFire && world.enemyBullets.countDead() > 0 && ene.alive)
                 {
                     //debugPrint("Shoot Bullet");
