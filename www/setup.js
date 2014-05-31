@@ -26,6 +26,8 @@ function setupPlayer() {
     player.animations.play('down');
 
     game.camera.follow(player);
+
+    player.health = 100;
     
 }
 

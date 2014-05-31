@@ -115,6 +115,7 @@ window.onload = function() {
         
         updateShooters();
         gui.update();
+        game.physics.arcade.overlap(world.enemyBullets, player, bulletHitPlayer, null, this);
 	}
 
 	function render() {
