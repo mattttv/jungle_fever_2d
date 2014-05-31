@@ -61,16 +61,17 @@ window.onload = function() {
 
 
         // plant-sources - plant stuff to pick up
-        game.load.image('pltsrc1', 'resources/weeds.png');
-        game.load.image('pltsrc2', 'resources/s2.png');
-        game.load.image('pltsrc3', 'resources/wnd.png');
+        game.load.image(plantMap[0], 'resources/weeds.png');
+        game.load.image(plantMap[1], 'resources/s2.png');
+        game.load.image(plantMap[2], 'resources/wnd.png');
         game.load.spritesheet('growtree', 'resources/plant2.png', 50, 117);
+        
+        // gui sprites
+        game.load.image('inventory', 'resources/inventory.png');
 
         //sounds
         game.load.audio('village_music', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         game.load.audio('all_sounds', 'resources/sounds/_ALL_SOUNDS_v1.mp3');
-        
-
 
         gui.preload();
 	}

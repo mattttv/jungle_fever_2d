@@ -8,11 +8,11 @@ var START_RAIN = true;
 
 var RENDER_DEBUG = false;
 
-var DEBUGOUTPUT = true;
+var DEBUGOUTPUT = false;
 
 var DEBUGCAMERA = false;
 
-var SHOW_HELP = false;
+var SHOW_HELP = true;
 
 var DEBUG_LAYER = false;
 
