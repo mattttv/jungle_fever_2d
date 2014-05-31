@@ -63,7 +63,7 @@ GUI.prototype = {
 		if ((getTime() - this.lastTimeGui) >= this.textDelay) {
 			this.lastTimeGui = getTime();
 
-			debugPrint(this.lastTimeGui);
+			//debugPrint(this.lastTimeGui);
 			
     //this.lastTimeGui = getTime();}
 

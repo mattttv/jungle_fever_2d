@@ -30,10 +30,42 @@ function setupPlayer() {
 }
 
 function setupMusic() {
-    music = game.add.audio('village',1,true);
+    //sounds = game.add.audio('village_sound',1,true);
+
+    music = game.add.audio('village_music');
+    music.override = true;
+
+    music.addMarker('ost',0.0,50, 1, true);
+
+    sounds = game.add.audio('all_sounds');
+    sounds.override = true;
+
+    //addMarker(name, start, duration, volume, loop)
+    sounds.addMarker('attack',0.0,2.0, 1, false);
+    sounds.addMarker('hurt',2.0,1.0, 1, false);
+    sounds.addMarker('collission',4.0,1.5, 1, false);
+    sounds.addMarker('dash',6.0,1.3, 1, false);
+    sounds.addMarker('heal',8.0,2.6, 1, false);
+    sounds.addMarker('grab',11.0,1.2, 1, true);
+    sounds.addMarker('hit',12.6,0.85, 1, false);    
+    sounds.addMarker('shooter_shoot',11.41,1.01, 1, false);
+    sounds.addMarker('shooter_death',12.6,0.85, 1, false);
+
+
+    /*
+    0.0 - 0.9 attack
+    2.0 - 3.0 being hurt
+    4.0 - 5.5 collission
+    6.0 - 7.3 dash
+    8.0 - 10.6 heal
+    11.0 - 11.2 grab
+    11.41 - 12.42 shooter shoot
+    12.6 - 13.45 shooter death
+    13.52 - 14.7 hit
+    */
 
     if (START_MUSIC) {
-        music.play('',0,1,true);
+        music.play('ost',0,1,true);
     }   
 }
 

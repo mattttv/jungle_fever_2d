@@ -9,6 +9,8 @@ var playermodel;
 var gui;
 var map;
 
+var music;
+
 //var layer;
 //var people;
 
@@ -48,7 +50,7 @@ window.onload = function() {
         game.load.image('baddie', 'resources/weeds.png');
         game.load.image('enemie', 'resources/pineapple.png');
         game.load.spritesheet('girl', 'resources/spieler1.png', 64, 100);
-        game.load.audio('village', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
+        
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
         game.load.spritesheet('dust', 'resources/dust.png', 17, 17);
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
@@ -61,6 +63,10 @@ window.onload = function() {
         game.load.image('pltsrc2', 'resources/s2.png');
         game.load.image('pltsrc3', 'resources/wnd.png');
         game.load.spritesheet('growtree', 'resources/plant2', 50, 117);
+
+        //sounds
+        game.load.audio('village_music', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
+        game.load.audio('all_sounds', 'resources/sounds/_ALL_SOUNDS_v1.mp3');
         
 
 
