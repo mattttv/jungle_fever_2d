@@ -34,11 +34,11 @@ function initPlants(game, world) {
 	world.sprites['treeplants'].enableBody = true;
 
 	// Add "Plant sources" that will produce plants over time ...
-	setPlantSource(world, 990, 300, "gingerblossom");
-	setPlantSource(world, 560, 1300, "gingerblossom");
-	setPlantSource(world, 500, 950, "mandrake");
-	setPlantSource(world, 1200, 1200, "mandrake");
-	setPlantSource(world, 1050, 1200, "cheesecake");
+	//setPlantSource(world, 990, 300, "gingerblossom");
+	//setPlantSource(world, 560, 1300, "gingerblossom");
+	//setPlantSource(world, 500, 950, "mandrake");
+	//setPlantSource(world, 1200, 1200, "mandrake");
+	//setPlantSource(world, 1050, 1200, "cheesecake");
 	
 	
 //	// world.sprites['plants'] = game.add.group();
@@ -64,9 +64,9 @@ function initEnemies() {
     	var x = game.world.randomX;
     	var y = game.world.randomY;
     	if (x <=350 && x >= 300)
-    		x += 100;
+    		x += 200;
     	if (y <=400 && y >= 150)
-    		y += 350;	
+    		y += 450;	
         var e = world.sprites['enemies'].create(
                 x, y, 
                 'shooter');
