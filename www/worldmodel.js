@@ -80,6 +80,9 @@ function PlayerModel(game) {
 	this.game.playermodel = this;
 	this.invcounts={};
     this.dashSpeed=300;
+    
+    // init the "default" plant 
+    this.invcounts[this.HERB_A] = 0;
 }
 
 PlayerModel.prototype = {
@@ -105,9 +108,18 @@ PlayerModel.prototype = {
 			
 		},
 		addPlant : function(plantname) {
-			if (this.invcounts[plantname] == undefined)
+			if (this.invcounts[plantname] == undefined) {
 				this.invcounts[plantname] = 0;
+			}
+			
+			// Add inventory counter
 			this.invcounts[plantname]+=1;
+			
+			// TODO : remove, once the real healing system is 
+			// in place. For now, always count up HERB_A
+			if(plantname != this.HERB_A) {
+				this.invcounts[this.HERB_A]+=1;	
+			}
 		},
 		getInventoryCount : function() {
 			return this.invcounts[this.HERB_A] || 0;
@@ -310,10 +322,10 @@ Environment.prototype = {
 		var worldpeople = this.game.worldmodel.people;
 		this.next_disease_state-=ticks;
 		
-		if (this.plants_respawn.update(ticks)) {
-			//debugPrint('respawn plants');
-			initPlants(game, world); // call works only with globals - WTF
-		}
+//		if (this.plants_respawn.update(ticks)) {
+//			//debugPrint('respawn plants');
+//			initPlants(game, world); // call works only with globals - WTF
+//		}
 		
 		if (this.next_disease_state < 0) {
 			this.next_disease_state = this.getNewRandomState(this.DEFAULT_VAL);
