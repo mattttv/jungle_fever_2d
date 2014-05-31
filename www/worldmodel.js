@@ -9,7 +9,7 @@
 function CurrentArea(game) {
 	this.game = game;
 	this.game.worldmodel = this;
-	//this.plants=[];
+	this.plants=[];
 	//this.people=[];
 	this.sprites={};
 	this.people=[];
@@ -44,6 +44,10 @@ CurrentArea.prototype.doUpdates = function(game) {
 	
 	this.enivronment.update(ticks);
 	
+	// Update plants
+	for (var p in this.plants) {
+		this.plants[p].update(ticks);
+	}
 }
 
 CurrentArea.prototype.init = function(game) {
@@ -76,6 +80,9 @@ function PlayerModel(game) {
 	this.game.playermodel = this;
 	this.invcounts={};
     this.dashSpeed=300;
+    
+    // init the "default" plant 
+    this.invcounts[this.HERB_A] = 0;
 }
 
 PlayerModel.prototype = {
@@ -101,9 +108,18 @@ PlayerModel.prototype = {
 			
 		},
 		addPlant : function(plantname) {
-			if (this.invcounts[plantname] == undefined)
+			if (this.invcounts[plantname] == undefined) {
 				this.invcounts[plantname] = 0;
+			}
+			
+			// Add inventory counter
 			this.invcounts[plantname]+=1;
+			
+			// TODO : remove, once the real healing system is 
+			// in place. For now, always count up HERB_A
+			if(plantname != this.HERB_A) {
+				this.invcounts[this.HERB_A]+=1;	
+			}
 		},
 		getInventoryCount : function() {
 			return this.invcounts[this.HERB_A] || 0;
@@ -251,6 +267,37 @@ RandomActionEmitter.prototype = {
 	}
 }
 
+
+/**
+ * Box-Muller, see http://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform#Implementation
+ * Generate standard, normally distributed random numbers.
+ */
+function GaussianNoise() {
+	this.has_spare = false;
+	this.rand1=0;
+	this.rand2=0
+}
+GaussianNoise.prototype = {
+	generate: function(variance) {
+		if(variance==undefined) {
+			variance = 1.0;
+		}
+		if(this.has_spare)
+		{
+			this.has_spare = false;
+			return Math.sqrt(variance * this.rand1) * Math.sin(this.rand2);
+		}
+	 
+		this.has_spare = true;
+		this.rand1 = Math.random();
+		if(this.rand1 < 1e-10) this.rand1 = 1e-10;
+		this.rand1 = -2 * Math.log(this.rand1);
+		this.rand2 = Math.random() * 2 * Math.PI;
+		return Math.sqrt(variance * this.rand1) * Math.cos(this.rand2);	
+	}
+}
+
+
 // ----------------------------------------------------------------------------
 /**
  * This will produce random events after certain ticks.
@@ -275,10 +322,10 @@ Environment.prototype = {
 		var worldpeople = this.game.worldmodel.people;
 		this.next_disease_state-=ticks;
 		
-		if (this.plants_respawn.update(ticks)) {
-			//debugPrint('respawn plants');
-			initPlants(game, world); // call works only with globals - WTF
-		}
+//		if (this.plants_respawn.update(ticks)) {
+//			//debugPrint('respawn plants');
+//			initPlants(game, world); // call works only with globals - WTF
+//		}
 		
 		if (this.next_disease_state < 0) {
 			this.next_disease_state = this.getNewRandomState(this.DEFAULT_VAL);

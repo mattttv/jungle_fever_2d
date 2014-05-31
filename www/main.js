@@ -20,6 +20,8 @@ var map;
 //var level;
 //var emitter;
 
+// Global source of normally distributed random numbers
+var gaussRand;
 
 /*
  * Main
@@ -34,6 +36,9 @@ window.onload = function() {
 	world = new CurrentArea(game);
 	playermodel = new PlayerModel(game);
 	gui = new GUI(game);
+	
+	gaussRand = new GaussianNoise();
+	
 	function preload() {
         
         level = new Level(game);
@@ -47,7 +52,17 @@ window.onload = function() {
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
         game.load.spritesheet('dust', 'resources/dust.png', 17, 17);
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
+
         game.load.spritesheet('shooter', 'resources/schiessblume1.png', 128, 100);
+
+
+        // plant-sources - plant stuff to pick up
+        game.load.image('pltsrc1', 'resources/weeds.png');
+        game.load.image('pltsrc2', 'resources/s2.png');
+        game.load.image('pltsrc3', 'resources/wnd.png');
+        game.load.spritesheet('growtree', 'resources/plant2', 50, 117);
+        
+
 
         gui.preload();
 	}
