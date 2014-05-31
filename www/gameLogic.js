@@ -92,7 +92,10 @@ function bulletHitPlayer(bul) {
     bul.destroy();
 
     player.health -= BULLET_DAMAGE;
-      if(player.health <= 10) {
+      if (player.alive && player.health <= 0) {
+        player.kill();
+      }
+      else if(player.health <= 10) {
         debugPrint("you are gonna die!!!");
       }
 };      
