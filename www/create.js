@@ -33,14 +33,10 @@ function initPlants(game, world) {
 	world.sprites['treeplants'] = game.add.group();
 	world.sprites['treeplants'].enableBody = true;
 
-//	// Add "Plant sources" that will produce plants over time ...
-//	setPlantSource(world, 990, 300, "gingerblossom");
-//	setPlantSource(world, 990, 300, "gingerblossom");
-//	setPlantSource(world, 560, 1300, "gingerblossom");
+	// Add "Plant sources" that will produce plants over time ...
 	setPlantSource(world, 700, 150, "mandrake");
 	setPlantSource(world, 750, 160, "mandrake");
 	setPlantSource(world, 720, 130, "mandrake");
-//	setPlantSource(world, 1050, 1200, "cheesecake");
 	
 }
 
@@ -61,11 +57,6 @@ function initEnemies() {
         e.body.collideWorldBounds = true;
         e.body.bounce.set(1);
         e.body.immovable = true;
-        e.body.offset.x=20;
-        e.body.offset.y=5;
-        e.body.height-=45;
-        e.body.width-=35;
-        e.anchor.setTo(0.5, 0.5);
         
         
         e.animations.add('shoot', [1, 0], 4, true);
@@ -93,7 +84,7 @@ function initEnemies() {
     world.enemyBullets = game.add.group();
     world.enemyBullets.enableBody = true;
     world.enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
-    world.enemyBullets.createMultiple(100, 'bullet');
+    world.enemyBullets.createMultiple(BULLETS_IN_GAME, 'bullet');
     world.enemyBullets.setAll('anchor.x', 0.5);
     world.enemyBullets.setAll('anchor.y', 0.5);
     world.enemyBullets.setAll('outOfBoundsKill', true);
@@ -110,32 +101,54 @@ function initEnemies() {
 }
 
 function updateShooters() {
+    var fireRate = 3000;
+//without kill of bullet    
+//game.physics.arcade.overlap(world.enemyBullets, player, bulletHitPlayer, null, this);
+     //check if player was hit  
 
-    var fireRate = 1200;
+
+    game.physics.arcade.overlap(world.enemyBullets, player, function(b,p) {
+        bulletHitPlayer(p);
+    });
+
+/*
+    if (game.physics.arcade.distanceBetween(world.enemyBullets, player) <= 0) {
+        var t = game.time.now;
+        bulletHitPlayer(t);
+    }
+    */
+
     
     for (var i = 0; i < world.sprites['enemies'].length; i++) {
         	var ene = world.sprites['enemies'].getAt(i);
             game.physics.arcade.collide(player, ene);
             if (this.game.physics.arcade.distanceBetween(ene, player) < 300)
             {
-                debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
+                //debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
                 if (game.time.now > ene.nextFire && world.enemyBullets.countDead() > 0 && ene.alive)
                 {
                     //debugPrint("Shoot Bullet");
                     ene.nextFire = game.time.now + fireRate;
+
 
                     var bullet = world.enemyBullets.getFirstDead();
 
                     bullet.reset(ene.body.x + ene.body.width/2, ene.body.y+ene.body.height/2);
 
                     bullet.rotation = this.game.physics.arcade.moveToObject(bullet, player, 500);
+                    /* wont work here
+                    if (game.physics.arcade.distanceBetween(bullet, player) <= 2)
+                    {
+                            debugPrint("HIT");
+                    }
+                    */
+
                 }
             }	
 
         }
     
-    
-    
+
 
 }
 

@@ -83,3 +83,27 @@ function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
   }
     
 }
+
+function bulletHitPlayer(bul) {
+    sounds.play('hurt');
+
+    debugPrint("player gets hit for " + BULLET_DAMAGE + " health points");
+
+    bul.destroy();
+
+    player.health -= BULLET_DAMAGE;
+      if (player.alive && player.health <= 0) {
+        player.kill();
+      }
+      else if(player.health <= 10) {
+        debugPrint("you are gonna die!!!");
+      }
+};      
+
+//TODO does not work?
+function beKilled(bullet, delay) {
+  if (getTime() - kill_time_current >= delay) {
+    debugPrint("kill bul");
+     bullet.kill();
+  }
+};
