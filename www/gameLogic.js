@@ -70,7 +70,7 @@ function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
         // console.log("i'm dead");
         var blood = game.add.emitter(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, 50);
         blood.makeParticles('blood');
-        blood.start(true, 300, 30, 50);
+        blood.start(true, 450, 30, 30);
 
         var dropItem = world.sprites['plants'].create(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, 'baddie');
       }

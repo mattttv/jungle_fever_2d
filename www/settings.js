@@ -14,6 +14,8 @@ var DEBUGCAMERA = false;
 
 var SHOW_HELP = false;
 
+var DEBUG_LAYER = false;
+
 //time between health-updates
 var TEXT_DELAY = 1000;
 
