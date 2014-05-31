@@ -53,6 +53,7 @@ window.onload = function() {
         
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
         game.load.spritesheet('dust', 'resources/dust.png', 17, 17);
+        game.load.spritesheet('blood', 'resources/blut.png', 17, 17);
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
         game.load.spritesheet('shooter', 'resources/schiessblume1.png', 128, 100);
@@ -63,7 +64,7 @@ window.onload = function() {
         game.load.image('pltsrc1', 'resources/weeds.png');
         game.load.image('pltsrc2', 'resources/s2.png');
         game.load.image('pltsrc3', 'resources/wnd.png');
-        game.load.spritesheet('growtree', 'resources/plant2', 50, 117);
+        game.load.spritesheet('growtree', 'resources/plant2.png', 50, 117);
 
         //sounds
         game.load.audio('village_music', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
