@@ -15,25 +15,25 @@ function doAttackPlayerLogic() {
   switch(player.last) {
   	case DIRECTION.RIGHT: 
     markerX = player.x + player.width/2;
-    markerY = player.y + player.height/2;
+    markerY = player.y;// + player.height/2;
     markerW = player.rangex;
     markerH = player.rangey;
   	break;
     case DIRECTION.LEFT: 
-    markerX = player.x - player.width/2;
-    markerY = player.y + player.height/2;
+    markerX = player.x - 1.5*player.width;
+    markerY = player.y;// + player.height/2;
     markerW = player.rangex;
     markerH = player.rangey;
     break;
     case DIRECTION.DOWN: 
-    markerX = player.x;
-    markerY = player.y + player.height;
+    markerX = player.x - player.width/2;
+    markerY = player.y + player.height/2;
     markerW = player.rangey;
     markerH = player.rangex;
     break;
     case DIRECTION.UP: 
-    markerX = player.x;
-    markerY = player.y - player.height/2 + 25;
+    markerX = player.x - player.width/2;
+    markerY = player.y - player.height/2;
     markerW = player.rangey;
     markerH = player.rangex;
     break;
@@ -47,7 +47,7 @@ function doAttackPlayerLogic() {
 }
 
 function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
-  var hitbox = game.add.sprite(markerX, markerY,'empty');
+  var hitbox = game.add.sprite(markerX, markerY, 'empty');
 
   var watchRange = false;
   if (watchRange)
@@ -66,6 +66,10 @@ function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
 
   game.physics.arcade.overlap(hitbox, world.sprites['enemies'], function(hitbox,enemy) {
       enemy.damage(player.damage);
+      if (enemy.health <= 0) {
+        // console.log("i'm dead");
+        var dropItem = world.sprites['plants'].create(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, 'baddie');
+      }
       debugPrint("player hits " + enemy.id + " for " + player.damage + " points");
       debugPrint("HP: " + enemy.health + "/" + (enemy.health + player.damage));
     }

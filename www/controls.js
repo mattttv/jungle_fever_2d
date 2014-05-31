@@ -95,6 +95,7 @@ function doGameController(game, cursors) {
 function doAttack() {
     debugPrint("attack");
     doAttackPlayerLogic();
+    sounds.play('attack');
     player.attack_happened = true;
     switch(player.last) {
         case DIRECTION.LEFT:
@@ -117,15 +118,16 @@ function doAttack() {
 function doDash() {
     var pspeed = game.playermodel.dashSpeed;
     debugPrint("dash");
+    sounds.play('dash');
     doAttackPlayerLogic();
     player.attack_happened = true;
     
     if (player.last == DIRECTION.RIGHT)
-        dust = game.add.emitter(player.body.x+40, player.body.y+60, 50);
+        dust = game.add.emitter(player.body.x-player.body.width/2+40, player.body.y-player.body.height/2+60, 50);
     else if (player.last == DIRECTION.LEFT)
-        dust = game.add.emitter(player.body.x, player.body.y+60, 50);
+        dust = game.add.emitter(player.body.x-player.body.width/2, player.body.y-player.body.height/2+60, 50);
     else
-        dust = game.add.emitter(player.body.x+12, player.body.y+25, 50);
+        dust = game.add.emitter(player.body.x-player.body.width/2+12, player.body.y-player.body.height/2+25, 50);
     dust.width = 0;
     
 
