@@ -95,6 +95,7 @@ function doGameController(game, cursors) {
 function doAttack() {
     debugPrint("attack");
     doAttackPlayerLogic();
+    sounds.play('attack');
     player.attack_happened = true;
     switch(player.last) {
         case DIRECTION.LEFT:
@@ -117,6 +118,7 @@ function doAttack() {
 function doDash() {
     var pspeed = game.playermodel.dashSpeed;
     debugPrint("dash");
+    sounds.play('dash');
     doAttackPlayerLogic();
     player.attack_happened = true;
     

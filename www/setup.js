@@ -45,7 +45,7 @@ function setupMusic() {
     sounds.addMarker('hurt',2.0,1.0, 1, false);
     sounds.addMarker('collission',4.0,1.5, 1, false);
     sounds.addMarker('dash',6.0,1.3, 1, false);
-    sounds.addMarker('heal',8.0,2.6, 1, false);
+    sounds.addMarker('heal',15.0,10.6, 1, false);
     sounds.addMarker('grab',11.0,1.2, 1, true);
     sounds.addMarker('hit',12.6,0.85, 1, false);    
     sounds.addMarker('shooter_shoot',11.41,1.01, 1, false);

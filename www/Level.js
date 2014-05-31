@@ -45,7 +45,9 @@ Level.prototype = {
     },
 
 	update: function (player) {
-        this.game.physics.arcade.collide(player, this.layer[3]);
+        this.game.physics.arcade.collide(player, this.layer[3], function(p,wall) {
+            sounds.play('collission');
+        });
 	}
 };
 

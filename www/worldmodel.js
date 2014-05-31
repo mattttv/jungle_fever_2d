@@ -192,6 +192,7 @@ Person.prototype.beHealed = function () {
 		this.immunity = 1+ Math.round(Math.random()*2,0);
 		
 		this.sprite.animations.play('gethealed');
+		sounds.play('heal');
 	}
 }
 
