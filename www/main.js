@@ -47,7 +47,7 @@ window.onload = function() {
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
         game.load.spritesheet('dust', 'resources/dust.png', 17, 17);
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
-        game.load.spritesheet('shooter', 'resources/schiessblume1.png', 110, 100);
+        game.load.spritesheet('shooter', 'resources/schiessblume1.png', 128, 100);
 
         gui.preload();
 	}

@@ -57,6 +57,9 @@ function initEnemies() {
         e.body.collideWorldBounds = true;
         e.body.bounce.set(1);
         
+        e.animations.add('shoot', [1, 0], 4, true);
+        e.animations.play('shoot');
+        
         //e.name="bad guy ";
         //e.id = e.name +  i;
         e.health = SHOOTER_HEALTH;
