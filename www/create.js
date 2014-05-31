@@ -29,6 +29,9 @@ function initPlants(game, world) {
 	// Init 'plants' sprite group
 	world.sprites['plants'] = game.add.group();
 	world.sprites['plants'].enableBody = true;
+	
+	world.sprites['treeplants'] = game.add.group();
+	world.sprites['treeplants'].enableBody = true;
 
 	// Add "Plant sources" that will produce plants over time ...
 	setPlantSource(world, 990, 300, "gingerblossom");
