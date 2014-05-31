@@ -107,11 +107,12 @@ GUI.prototype = {
 
 		// Add inventory display
 		var nmbr = game.add.bitmapText(
-			offsetx + 10,
-			offsety + 10,
+			10,
+			10,
 			'nokia',
 			'Plants: ' + game.playermodel.getInventoryCount().toString(),
 			24);
+		nmbr.fixedToCamera = true;
 		this.texts.push(nmbr);
 	}
 }
