@@ -60,7 +60,10 @@ window.onload = function() {
         game.load.image('pltsrc1', 'resources/weeds.png');
         game.load.image('pltsrc2', 'resources/s2.png');
         game.load.image('pltsrc3', 'resources/wnd.png');
-        game.load.spritesheet('growtree', 'resources/plant2', 50, 117);
+        game.load.spritesheet('growtree', 'resources/plant2.png', 50, 117);
+        
+        // gui sprites
+        game.load.image('inventory', 'resources/inventory.png');
         
 
 

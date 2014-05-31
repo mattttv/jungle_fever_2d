@@ -114,6 +114,10 @@ GUI.prototype = {
 				24);
 			nmbr.fixedToCamera = true;
 			this.texts.push(nmbr);
+			
+			// Add inventory graphic
+			var inventorysprite = game.add.sprite(0, game.camera.height-90,'inventory');
+			inventorysprite.fixedToCamera = true;
 		}
 	}
 };
