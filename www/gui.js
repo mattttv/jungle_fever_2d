@@ -106,13 +106,30 @@ GUI.prototype = {
         			ene.x + ene.width/2,
         			ene.y + ene.height/10,
         			'nokia',
-        			Math.round(ene.health,0).toString() + '/'+ SHOOTER_HEALTH.toString(),
+        			Math.round(ene.health,0).toString() ,
         			12);
 
         		this.texts.push(nmbr);
         	}
 
         }
+            
+        // Add in-game texts for enemies
+        //debugPrint(this.game.worldmodel.enemies);
+        for (var i = 0; i < world.sprites['walkers'].length; i++) {
+        	var ene = world.sprites['walkers'].getAt(i);
+        	if (ene.health > 0) {
+        		var nmbr = game.add.bitmapText(
+        			ene.x + ene.width/2,
+        			ene.y + ene.height/10,
+        			'nokia',
+        			Math.round(ene.health,0).toString(),
+        			12);
+
+        		this.texts.push(nmbr);
+        	}
+
+        }    
 
 
 		// Add inventory display

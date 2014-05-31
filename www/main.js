@@ -59,7 +59,7 @@ window.onload = function() {
         game.load.spritesheet('shooter', 'resources/schiessblume1.png', 128, 100);
         game.load.spritesheet('bullet', 'resources/schiessblume_kugel1.png', 64, 117);
 
-
+        game.load.spritesheet('walker', 'resources/plant2.png', 64, 100);
         // plant-sources - plant stuff to pick up
         game.load.image('pltsrc1', 'resources/weeds.png');
         game.load.image('pltsrc2', 'resources/s2.png');
@@ -108,6 +108,7 @@ window.onload = function() {
         doUpdates(game); //what is called here? worldmodel or controls?
         
         updateShooters();
+        updateWalkers();
         gui.update();
 	}
 

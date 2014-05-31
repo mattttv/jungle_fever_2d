@@ -19,7 +19,12 @@ var DEBUG_LAYER = false;
 //time between health-updates
 var TEXT_DELAY = 1000;
 
-var SHOOTER_AMOUNT = 8;
-
 //ENEMY SETTINGS
+var SHOOTER_AMOUNT = 8;
+var WALKER_AMOUNT = 8;
+
+var WALKER_HEALTH = 20;
 var SHOOTER_HEALTH = 100;
+
+
+var WALKER_DAMAGE = 20;
