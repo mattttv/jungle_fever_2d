@@ -91,7 +91,10 @@ function bulletHitPlayer(bul) {
 
     bul.destroy();
 
-    timeHit = 0;
+    player.health -= BULLET_DAMAGE;
+      if(player.health <= 10) {
+        debugPrint("you are gonna die!!!");
+      }
 };      
 
 //TODO does not work?
