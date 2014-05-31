@@ -33,12 +33,12 @@ function initPlants(game, world) {
 	world.sprites['treeplants'] = game.add.group();
 	world.sprites['treeplants'].enableBody = true;
 
-	// Add "Plant sources" that will produce plants over time ...
-	setPlantSource(world, 990, 300, "gingerblossom");
-	setPlantSource(world, 560, 1300, "gingerblossom");
-	setPlantSource(world, 500, 950, "mandrake");
-	setPlantSource(world, 1200, 1200, "mandrake");
-	setPlantSource(world, 1050, 1200, "cheesecake");
+//	// Add "Plant sources" that will produce plants over time ...
+//	setPlantSource(world, 990, 300, "gingerblossom");
+//	setPlantSource(world, 560, 1300, "gingerblossom");
+//	setPlantSource(world, 500, 950, "mandrake");
+//	setPlantSource(world, 1200, 1200, "mandrake");
+//	setPlantSource(world, 1050, 1200, "cheesecake");
 	
 	
 //	// world.sprites['plants'] = game.add.group();
