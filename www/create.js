@@ -35,25 +35,13 @@ function initPlants(game, world) {
 
 //	// Add "Plant sources" that will produce plants over time ...
 //	setPlantSource(world, 990, 300, "gingerblossom");
+//	setPlantSource(world, 990, 300, "gingerblossom");
 //	setPlantSource(world, 560, 1300, "gingerblossom");
-//	setPlantSource(world, 500, 950, "mandrake");
-//	setPlantSource(world, 1200, 1200, "mandrake");
+	setPlantSource(world, 700, 150, "mandrake");
+	setPlantSource(world, 750, 160, "mandrake");
+	setPlantSource(world, 720, 130, "mandrake");
 //	setPlantSource(world, 1050, 1200, "cheesecake");
 	
-	
-//	// world.sprites['plants'] = game.add.group();
-//	world.sprites['plants'].enableBody = true;
-//	for (var i = 0; i < 15; i++)
-//    {
-//        var s = world.sprites['plants'].create(
-//        		game.world.randomX, game.world.randomY, 
-//        		'baddie');
-//        s.body.collideWorldBounds = true;
-//        s.body.bounce.set(1);
-//        
-//        s.plant_tag="gingerblossom";
-//        s.id = s.plant_tag +  i;
-//    }	
 }
 
 function initEnemies() {
