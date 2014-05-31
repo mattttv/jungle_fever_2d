@@ -9,7 +9,7 @@
 function CurrentArea(game) {
 	this.game = game;
 	this.game.worldmodel = this;
-	//this.plants=[];
+	this.plants=[];
 	//this.people=[];
 	this.sprites={};
 	this.people=[];
@@ -44,6 +44,10 @@ CurrentArea.prototype.doUpdates = function(game) {
 	
 	this.enivronment.update(ticks);
 	
+	// Update plants
+	for (var p in this.plants) {
+		this.plants[p].update(ticks);
+	}
 }
 
 CurrentArea.prototype.init = function(game) {
@@ -250,6 +254,37 @@ RandomActionEmitter.prototype = {
 		}
 	}
 }
+
+
+/**
+ * Box-Muller, see http://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform#Implementation
+ * Generate standard, normally distributed random numbers.
+ */
+function GaussianNoise() {
+	this.has_spare = false;
+	this.rand1=0;
+	this.rand2=0
+}
+GaussianNoise.prototype = {
+	generate: function(variance) {
+		if(variance==undefined) {
+			variance = 1.0;
+		}
+		if(this.has_spare)
+		{
+			this.has_spare = false;
+			return Math.sqrt(variance * this.rand1) * Math.sin(this.rand2);
+		}
+	 
+		this.has_spare = true;
+		this.rand1 = Math.random();
+		if(this.rand1 < 1e-10) this.rand1 = 1e-10;
+		this.rand1 = -2 * Math.log(this.rand1);
+		this.rand2 = Math.random() * 2 * Math.PI;
+		return Math.sqrt(variance * this.rand1) * Math.cos(this.rand2);	
+	}
+}
+
 
 // ----------------------------------------------------------------------------
 /**

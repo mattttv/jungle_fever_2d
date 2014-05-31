@@ -180,7 +180,7 @@ function doUpdates(game) {
     // in world object.
     game.physics.arcade.overlap(player, world.sprites['plants'], function(o1,o2) {
     	o2.destroy();
-    	console.log("Picked up " + o2.plant_tag);
+    	debugPrint("Picked up " + o2.plant_tag);
     	game.playermodel.addPlant(o2.plant_tag);
     });
 
