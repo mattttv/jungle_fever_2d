@@ -78,7 +78,7 @@ function setupPhysics() {
     // reduce player body size - collision happens not as far away ? 
     player.body.offset.x=20;
     player.body.offset.y=30;
-    player.body.height-=35;
+    player.body.height-=45;
     player.body.width-=35;
 }
 

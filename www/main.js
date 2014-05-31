@@ -97,6 +97,8 @@ window.onload = function() {
 	}
 
 	function update() {
+        var ticks = game.time.now - this.last_time ;
+        this.last_time = game.time.now;
         doGameController(game, cursors);
         
         level.update(player);
