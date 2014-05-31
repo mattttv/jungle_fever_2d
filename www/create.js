@@ -100,7 +100,7 @@ function initEnemies() {
     world.enemyBullets = game.add.group();
     world.enemyBullets.enableBody = true;
     world.enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
-    world.enemyBullets.createMultiple(100, 'bullet');
+    world.enemyBullets.createMultiple(BULLETS_IN_GAME, 'bullet');
     world.enemyBullets.setAll('anchor.x', 0.5);
     world.enemyBullets.setAll('anchor.y', 0.5);
     world.enemyBullets.setAll('outOfBoundsKill', true);
@@ -117,8 +117,23 @@ function initEnemies() {
 }
 
 function updateShooters() {
+    var fireRate = 3000;
+//without kill of bullet    
+//game.physics.arcade.overlap(world.enemyBullets, player, bulletHitPlayer, null, this);
+     //check if player was hit  
 
-    var fireRate = 1200;
+
+    game.physics.arcade.overlap(world.enemyBullets, player, function(b,p) {
+        bulletHitPlayer(p);
+    });
+
+/*
+    if (game.physics.arcade.distanceBetween(world.enemyBullets, player) <= 0) {
+        var t = game.time.now;
+        bulletHitPlayer(t);
+    }
+    */
+
     
     for (var i = 0; i < world.sprites['enemies'].length; i++) {
         	var ene = world.sprites['enemies'].getAt(i);
@@ -131,18 +146,25 @@ function updateShooters() {
                     //debugPrint("Shoot Bullet");
                     ene.nextFire = game.time.now + fireRate;
 
+
                     var bullet = world.enemyBullets.getFirstDead();
 
                     bullet.reset(ene.body.x + ene.body.width/2, ene.body.y+ene.body.height/2);
 
                     bullet.rotation = this.game.physics.arcade.moveToObject(bullet, player, 500);
+                    /* wont work here
+                    if (game.physics.arcade.distanceBetween(bullet, player) <= 2)
+                    {
+                            debugPrint("HIT");
+                    }
+                    */
+
                 }
             }	
 
         }
     
-    
-    
+
 
 }
 
