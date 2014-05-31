@@ -45,8 +45,14 @@ function initEnemies() {
     world.sprites['enemies'].enableBody = true;
     for (var i = 0; i < SHOOTER_AMOUNT; i++)
     {
+    	var x = game.world.randomX;
+    	var y = game.world.randomY;
+    	if (x <=350 && x >= 300)
+    		x += 100;
+    	if (y <=400 && y >= 150)
+    		y += 350;	
         var e = world.sprites['enemies'].create(
-                50*i, 50*i, 
+                x, y, 
                 'shooter');
         e.body.collideWorldBounds = true;
         e.body.bounce.set(1);
