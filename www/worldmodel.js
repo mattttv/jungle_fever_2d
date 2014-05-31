@@ -107,13 +107,8 @@ PlayerModel.prototype = {
 			
 			// Add inventory counter
 			this.invcounts[plantname]+=1;
-			
-			// TODO : remove, once the real healing system is 
-			// in place. For now, always count up HERB_A
-			if(plantname != this.HERB_A) {
-				this.invcounts[this.HERB_A]+=1;	
-			}
 		},
+		
 		getInventoryCount : function() {
 			return this.invcounts[this.HERB_A] || 0;
 		}
@@ -179,15 +174,16 @@ Person.prototype.die = function() {
 
 Person.prototype.attemptHeal = function (inventory) {
 	for (var d in this.diseases) {
+		
 		var can_heal = true;
 		for(var med in this.diseases[d].healedBy) {
-			if (!inventory[this.diseases[d].healedBy[med]] >= 1) {
+			if (inventory[this.diseases[d].healedBy[med]] < 3) {
 				can_heal = false;
 			}
 		}
 		if (can_heal) {
 			for(var med in this.diseases[d].healedBy) {
-				inventory[this.diseases[d].healedBy[med]] -= 1;
+				inventory[this.diseases[d].healedBy[med]] -= 3;
 			}
 			this.last_heal = this.diseases[d];
 			this.diseases = []; // this heals all at once ...
