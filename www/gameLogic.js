@@ -68,6 +68,10 @@ function doAttackOverlapWithPlayer(markerX,markerY,markerW,markerH) {
       enemy.damage(player.damage);
       if (enemy.health <= 0) {
         // console.log("i'm dead");
+        var blood = game.add.emitter(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, 50);
+        blood.makeParticles('blood');
+        blood.start(true, 300, 30, 50);
+
         var dropItem = world.sprites['plants'].create(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, 'baddie');
       }
       debugPrint("player hits " + enemy.id + " for " + player.damage + " points");

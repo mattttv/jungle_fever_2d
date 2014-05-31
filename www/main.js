@@ -53,6 +53,7 @@ window.onload = function() {
         
         game.load.spritesheet('rain', 'resources/rain.png', 17, 17);
         game.load.spritesheet('dust', 'resources/dust.png', 17, 17);
+        game.load.spritesheet('blood', 'resources/blut.png', 17, 17);
         game.load.spritesheet('villageguy', 'resources/people.png', 64, 80);
 
         game.load.spritesheet('shooter', 'resources/schiessblume1.png', 128, 100);
