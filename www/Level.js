@@ -31,7 +31,7 @@ Level.prototype = {
         this.layer[4] = this.map.createLayer('plants');
         this.layer[4].resizeWorld();
         /*
-        for (var i = 0; i < 5, i++) {
+        for (var i = 0; i < this.map.layers.length, i++) {
             this.layer[i] = this.map.createLayer(i);
             this.layer[i].resizeWorld();
         }

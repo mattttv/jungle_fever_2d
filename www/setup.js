@@ -26,6 +26,8 @@ function setupPlayer() {
     player.animations.play('down');
 
     game.camera.follow(player);
+
+    player.health = 100;
     
 }
 
@@ -116,6 +118,7 @@ function setupAndStartRain() {
 
 function setupKeys () {
     cursors = game.input.keyboard.createCursorKeys();
+    gameStartKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
     attackKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
     attackKey.onDown.add(doAttack, this);
             

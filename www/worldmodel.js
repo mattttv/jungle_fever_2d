@@ -20,7 +20,11 @@ function CurrentArea(game) {
 CurrentArea.prototype.doUpdates = function(game) {
 	//TODO [mv] we should use event handling here
 	var ticks = game.time.now - this.last_time ;
+	
+	if (ticks < 1000) return;
+	
 	this.last_time = game.time.now;
+	
 	
 	for (var p in this.people) {
 		var pers = this.people[p];

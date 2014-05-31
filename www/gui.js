@@ -73,6 +73,16 @@ GUI.prototype = {
 			game.world.remove(this.texts[t]);
 		}
 
+		//health points
+		var nmbr = game.add.bitmapText(
+					650,
+					10,
+					'nokia',
+					'Health: ' + Math.round(player.health,0).toString(),
+					24);
+		nmbr.fixedToCamera = true;
+				this.texts.push(nmbr);
+
 
 		
 		// Add in-game texts for people

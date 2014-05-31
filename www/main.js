@@ -8,6 +8,7 @@ var world;
 var playermodel;
 var gui;
 var map;
+var logo;
 
 var music;
 
@@ -33,7 +34,7 @@ window.onload = function() {
 	game = new Phaser.Game(
 			GAME_SIZE[0], GAME_SIZE[1],
 			Phaser.CANVAS, 
-			'Jungle Fever 2.0 - Dr. Voodo returns', 
+			'jungleFever', 
 			{ preload: preload, create: create, update: update, render: render });
 	world = new CurrentArea(game);
 	playermodel = new PlayerModel(game);
@@ -46,6 +47,7 @@ window.onload = function() {
         level = new Level(game);
         level.preload();
 
+        game.load.image('logo', 'resources/COVER.png');
         game.load.image('people', 'resources/pineapple.png');
         game.load.image('baddie', 'resources/weeds.png');
         game.load.image('enemie', 'resources/pineapple.png');
@@ -84,7 +86,7 @@ window.onload = function() {
         setupPlayer();
         setupMusic();
         setupPhysics();
-        setupFullScreen();
+        // setupFullScreen();
         setupKeys();
 
         if (START_RAIN) {
@@ -94,6 +96,10 @@ window.onload = function() {
 	    spawnArea(game, world);
 
         gui.create();
+
+        logo = game.add.sprite(0, 0, 'logo');
+        logo.fixedToCamera = true;
+        game.input.onDown.add(removeLogo, this);
 
 
 	}
@@ -110,6 +116,7 @@ window.onload = function() {
         updateShooters();
         updateWalkers();
         gui.update();
+        game.physics.arcade.overlap(world.enemyBullets, player, bulletHitPlayer, null, this);
 	}
 
 	function render() {
@@ -125,6 +132,10 @@ window.onload = function() {
 
 	}
 
+    function removeLogo () {
+        game.input.onDown.remove(removeLogo, this);
+        logo.kill();
+    }
  
 };
 
