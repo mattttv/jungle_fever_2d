@@ -35,9 +35,12 @@ function initPlants(game, world) {
 
 
 	// Add "Plant sources" that will produce plants over time ...
-	setPlantSource(world, 700, 150, "mandrake");
-	setPlantSource(world, 750, 160, "mandrake");
-	setPlantSource(world, 720, 130, "mandrake");
+	setPlantSource(world, 700, 150, plantMap[2]);
+	setPlantSource(world, 750, 160, plantMap[1]);
+	setPlantSource(world, 720, 130, plantMap[1]);
+	setPlantSource(world, 720, 210, plantMap[0]);
+	
+	setPlantSource(world, 1220, 510, plantMap[0]);
 	
 }
 

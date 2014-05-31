@@ -27,7 +27,7 @@ function setupPlayer() {
 
     game.camera.follow(player);
 
-    player.health = 100;
+    player.health = 1500;
     
 }
 
