@@ -123,7 +123,7 @@ function updateShooters() {
             if (this.game.physics.arcade.distanceBetween(ene, player) < 300)
             {
                 debugPrint("Shoot Bullet"+game.time.now+ene.nextFire+world.enemyBullets.countDead() );
-                if (game.time.now > ene.nextFire && world.enemyBullets.countDead() > 0)
+                if (game.time.now > ene.nextFire && world.enemyBullets.countDead() > 0 && ene.alive)
                 {
                     debugPrint("Shoot Bullet");
                     ene.nextFire = game.time.now + fireRate;
