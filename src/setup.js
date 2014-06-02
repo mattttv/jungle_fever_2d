@@ -78,10 +78,10 @@ function setupPhysics() {
     player.body.collideWorldBounds = true;
     player.body.bounce.set(1);
     // reduce player body size - collision happens not as far away ? 
-    player.body.offset.x=20;
-    player.body.offset.y=30;
-    player.body.height-=45;
-    player.body.width-=35;
+    player.body.offset.x=10;
+    player.body.offset.y=20;
+    player.body.height-=65;
+    player.body.width-=55;
     player.anchor.setTo(0.5, 0.5);
 }
 
