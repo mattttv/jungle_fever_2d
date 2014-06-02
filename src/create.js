@@ -51,10 +51,12 @@ function initEnemies() {
     {
     	var x = game.world.randomX;
     	var y = game.world.randomY;
-    	if (x <=350 && x >= 300)
-    		x += 200;
-    	if (y <=400 && y >= 150)
-    		y += 450;	
+    	// [mf] changed make enemy plants appear mostly bottom/right
+    	if (x <=500)
+    		x += 500;
+    	if (y <=500 )
+    		y += 500;
+    	
         var e = world.sprites['enemies'].create(
                 x, y, 
                 'shooter');
