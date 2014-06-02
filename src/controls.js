@@ -4,10 +4,8 @@ function doGameController(game, cursors) {
 	var movement_happend = false;
     var one_direction = player.last;
     
-    if (!player.animations.currentAnim.isFinished)
+    if (player.animations.currentAnim && !player.animations.currentAnim.isFinished)
     {
-
-
         if (cursors.left.isDown)
         {
             player.body.velocity.x -= pspeed;        
@@ -41,7 +39,7 @@ function doGameController(game, cursors) {
         }
     }
 
-    if (player.animations.currentAnim.isFinished)
+    if (player.animations.currentAnim && player.animations.currentAnim.isFinished)
     {
         if(!shiftKey.isDown)
         {    
