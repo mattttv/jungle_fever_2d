@@ -6,12 +6,22 @@
 // Available of plant names
 var plantMap = ["gingerblossom", "mandrake", "gingerroot"]
 
-function PlantSource() {
+function PlantSource(tagname, x, y) {
 	this.tag_name=plantMap[0];
 	this.position={x:500, y:500};
 	this.spritename = 'pltsrc2';
 	this.spawnvar = 150; // variance of distribution
 	this.action_indicator = new RandomActionEmitter(10000);
+	
+	if(tagname != undefined) {
+		this.tag_name = tagname;
+		this.spritename = tagname; // here , the sprite preload asset == tagname
+								// otherwise, use a map/dict (see setPlantSource.spritemapping)
+	}
+	if(x != undefined)
+		this.position.x = x;
+	if(y != undefined)
+		this.position.y = y;
 	
 }
 
@@ -59,16 +69,19 @@ PlantSource.prototype = {
 	/**
 	 * Creates a new plant resource in the vicinity of the motherplant.
 	 */
-	generateResource: function() {
-		var newx = this.position.x + gaussRand.generate(this.spawnvar),
-			newy = this.position.y + gaussRand.generate(this.spawnvar);
+	generateResource: function(n) {
+		if (n==undefined) n = 1;
 		
-		var s = world.sprites['plants'].create(
-        		newx, newy,
-        		this.spritename);
-        s.body.collideWorldBounds = true;
-        s.body.bounce.set(1);
-        s.plant_tag=this.tag_name;
-        debugPrint(this.tag_name + 'was created')
+		for (var i=0; i < n; i++) {
+			var newx = this.position.x + gaussRand.generate(this.spawnvar),
+				newy = this.position.y + gaussRand.generate(this.spawnvar);
+			var s = world.sprites['plants'].create(
+	        		newx, newy,
+	        		this.spritename);
+	        s.body.collideWorldBounds = true;
+	        s.body.bounce.set(1);
+	        s.plant_tag=this.tag_name;
+	        // debugPrint(this.tag_name + 'was created')
+		}
 	}
 }

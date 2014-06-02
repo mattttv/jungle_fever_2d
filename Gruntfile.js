@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         	
             js : {
                 src : [
-                    'src/*.js',
+                    'src/js/*',
                 ],
                 // dest : 'build/src-combined.js'
                 dest : 'www/jfeev.js'

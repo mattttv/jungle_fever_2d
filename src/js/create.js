@@ -35,12 +35,12 @@ function initPlants(game, world) {
 
 
 	// Add "Plant sources" that will produce plants over time ...
+	// Add 0 and 2 . Resource 1 is gained by slashing the big blooms
 	setPlantSource(world, 700, 150, plantMap[2]);
-	setPlantSource(world, 750, 160, plantMap[1]);
-	setPlantSource(world, 720, 130, plantMap[1]);
+	setPlantSource(world, 750, 160, plantMap[2]);
+	setPlantSource(world, 720, 130, plantMap[0]);
 	setPlantSource(world, 720, 210, plantMap[0]);
 	
-	setPlantSource(world, 1220, 510, plantMap[0]);
 	
 }
 
