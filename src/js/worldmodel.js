@@ -203,8 +203,10 @@ Person.prototype.beHealed = function () {
 
 
 // ----------------------------------------------------------------------------
-
-
+//
+// Diseases config...
+// What is healed by what etc.
+//
 function diseaseFactory(diseasetype) {
 	var d = new Disease(1.0);
 	

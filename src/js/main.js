@@ -32,8 +32,8 @@ window.onload = function() {
 
 	game = new Phaser.Game(
 			GAME_SIZE[0], GAME_SIZE[1],
-			Phaser.CANVAS, 
-			'Jungle Fever 2.0 - Dr. Voodo returns', 
+			Phaser.AUTO, 
+			'jfeever', 
 			{ preload: preload, create: create, update: update, render: render });
 	world = new CurrentArea(game);
 	playermodel = new PlayerModel(game);
