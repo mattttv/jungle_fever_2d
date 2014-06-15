@@ -13,9 +13,8 @@ Game.Boot.prototype = {
 
     preload: function () {
 
-        this.game.stage.backgroundColor = '#4f5d3e';
-
-        game.load.image('loading_bar', 'resources/loading_bar.png');
+        game.stage.backgroundColor = '#fff';
+        game.load.image('loading_bar', './resources/loading_bar.png');
 
     },
 
@@ -34,16 +33,19 @@ Game.Load.prototype = {
 
     preload: function () {
 
-        label = game.add.text(Math.floor(width / 2) + 0.5, Math.floor(height / 2) - 15 + 0.5, 'Loading..', { font: '32px Arial', fill: '#fff' });
+        var label = game.add.text(Math.floor(width / 2), Math.floor(height / 2) - 80, 'Loading..', { font: '32px Arial', fill: '#fff' });
         label.anchor.setTo(0.5, 0.5);
 
-        loadingBar = game.add.sprite(width / 2, height / 2, 'loading_bar');
-        loading_bar.anchor.setTo(0.5, 0.5);
+        var loadingBar = game.add.sprite(width / 2, height / 2, 'loading_bar');
+        loadingBar.anchor.setTo(0.5, 0.5);
         game.load.setPreloadSprite(loadingBar);
 
         // loading Level
         this.game.load.tilemap('map', 'resources/karte1.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.image('tiles', 'resources/floor_TILES.png');
+
+        this.game.load.image('cover', 'resources/cover.png');
+        this.game.load.bitmapFont('nokia', 'resources/fonts/nokia.png', 'resources/fonts/nokia.xml');
 
         this.game.load.image('people', 'resources/pineapple.png');
         this.game.load.image('baddie', 'resources/weeds.png');
@@ -59,11 +61,11 @@ Game.Load.prototype = {
         this.game.load.spritesheet('bullet', 'resources/schiessblume_kugel1.png', 64, 117);
 
 
-        // plant-sources - plant stuff to pick up
-        this.game.load.image(plantMap[0], 'resources/weeds.png');
-        this.game.load.image(plantMap[1], 'resources/s2.png');
-        this.game.load.image(plantMap[2], 'resources/wnd.png');
-        this.game.load.spritesheet('growtree', 'resources/plant2.png', 50, 117);
+        // // plant-sources - plant stuff to pick up
+        // this.game.load.image(plantMap[0], 'resources/weeds.png');
+        // this.game.load.image(plantMap[1], 'resources/s2.png');
+        // this.game.load.image(plantMap[2], 'resources/wnd.png');
+        // this.game.load.spritesheet('growtree', 'resources/plant2.png', 50, 117);
         
         // gui sprites
         this.game.load.image('inventory', 'resources/inventory.png');
@@ -71,10 +73,11 @@ Game.Load.prototype = {
         //sounds
         this.game.load.audio('village_music', 'resources/sounds/Jungle_Fever_Village_1v0.mp3');
         this.game.load.audio('all_sounds', 'resources/sounds/_ALL_SOUNDS_v1.mp3');
-
+        console.log("loading done!");
     },
 
     create: function () {
+        console.log("go to Menu");
         this.game.state.start('Menu');
     }
 };

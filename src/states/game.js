@@ -1,6 +1,6 @@
 // game.js
 
-var game = new Phaser.Game(width, height, Phaser.AUTO, 'game');
+var game = new Phaser.Game(width, height, Phaser.CANVAS, 'game');
 
 game.state.add('Boot', Game.Boot);
 game.state.add('Load', Game.Load);
